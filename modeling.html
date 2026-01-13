@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>3D Modeling Basics - Animatea</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="modeling.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="body-v2">
+
+    <nav>
+        <div class="logo">Animatea</div>
+		<div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown-menu-item">
+                <a href="introduction.html">Tutorial</a>
+                <div class="dropdown-content">
+                    <a href="introduction.html" class="dropdown-link">
+                        <div class="link-details"><h5>Introduction 3D Concepts</h5></div>
+                    </a>
+                    <a href="modeling.html" class="dropdown-link">
+                        <div class="link-details"><h5>3D Modeling</h5></div>
+                    </a>
+                    <a href="texture-lighting.html" class="dropdown-link">
+                        <div class="link-details"><h5>Texturing & Lighting</h5></div>
+                    </a>
+                    <a href="3D_animation_tutorial.html" class="dropdown-link">
+                        <div class="link-details"><h5>Animation</h5></div>
+                    </a>
+                    <a href="rendering_tutorial.html" class="dropdown-link">
+                        <div class="link-details"><h5>Rendering</h5></div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <div class="nav-actions">
+			<div id="logged-out-UI">
+            <button class="signin" id="navSignIn">Sign In</button>
+			<button class="get-started" id="navGetStarted">Get Started</button>
+        </div>
+			<div id="logged-in-UI" style="display: none; align-items: center; gap: 15px;">
+        <span id="user-display-name" style="font-weight: 600; color: #fff;"></span>
+        <button id="logout-btn" style="background: transparent; border: 1px solid #ccc; color: #fff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Log Out</button>
+    </div>
+		 </div>
+    </nav>
+	
+	<div id="authModal" class="modal">
+    <div class="modal-content all-access-theme">
+        <span class="close-btn">&times;</span>
+
+        <div id="login-container">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to access your courses.</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Log In</button>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <span id="switchToRegister">Register here</span></p>
+            </div>
+        </div>
+
+        <div id="register-container" style="display: none;">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join our community today.</p>
+            </div>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth</label>
+                    <input type="date" id="regDOB" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <span id="switchToLogin">Log In here</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+    <header class="hero-section-v2">
+        <video autoplay muted loop playsinline id="video-background-v2">
+            <source src="video/bg_modeling.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-inner-v2">
+            <div class="hero-text-v2">
+                <p class="lead-v2">✨ MASTERCLASS</p>
+                <h1>Core Modeling Workflows</h1>
+                <p class="description-v2">Explore the three pillars of modern 3D creation. From industrial precision to organic digital clay, learn the techniques that power the digital world.</p>
+                <div style="margin-top:20px;">
+                    <a class="btn-primary-v2" href="#polygonal">Get Started</a>
+                </div>
+            </div>
+
+            <div class="hero-visual-v2">
+                <video id="hero-model-video" autoplay muted loop playsinline preload="metadata" poster="images/model-poster.jpg">
+                    <source src="video/modeling_vid.mp4" type="video/mp4">
+                    <img src="images/modeling-hero.jpg" alt="3D Modeling visual fallback">
+                </video>
+            </div>
+        </div>
+    </header>
+
+    <section id="polygonal" class="section-v2 bg-light reveal-v2">
+        <div class="container-v2">
+            <div class="method-layout-v2">
+                <div class="method-text-v2">
+                    <span class="section-tag-v2">01. Rigid Construction</span>
+                    <h2>Polygonal Modeling</h2>
+                    <p>The most fundamental method of creating 3D objects using straight lines and flat surfaces. It is the industry standard for real-time applications and video games.</p>
+
+                    <ul class="feature-list-v2">
+                        <li tabindex="0">
+                            <strong>Core Components</strong>
+                            Relies on vertices (points), edges (connecting lines), and facets (polygonal surfaces).
+                        </li>
+                        <li tabindex="0">
+                            <strong>Geometric Primitives</strong>
+                            Uses cubes, spheres, and cylinders as building blocks to construct complex shapes.
+                        </li>
+                        <li tabindex="0">
+                            <strong>Boolean Modeling</strong>
+                            Uses logical operators like Union, Intersection, and Difference for precise cutouts and combinations.
+                        </li>
+                        <li tabindex="0">
+                            <strong>Derivative Techniques</strong>
+                            Includes extrusion (pulling faces) and revolve (spinning profiles) to generate 3D volumes.
+                        </li>
+                    </ul>
+                </div>
+                <div class="method-visual-v2">
+                    <div class="sketchfab-embed-wrapper" style="width:100%;height:100%;">
+                        <iframe title="frieren" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/5695de9d7ca5477fad2844196d51d783/embed" style="width:100%; height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sculpting" class="section-v2 bg-dark reveal-v2">
+        <div class="container-v2">
+            <div class="method-layout-v2" style="flex-direction: row-reverse;">
+                <div class="method-text-v2">
+                    <span class="section-tag-v2">02. Organic Free-Form</span>
+                    <h2>Digital Sculpting</h2>
+                    <p>Focuses on techniques designed for creating organic, irregular, or soft shapes. It simulates the tactile experience of working with physical clay.</p>
+
+                    <div class="sculpt-grid-v2">
+                        <div class="flip-card-v2" data-video="https://www.youtube.com/embed/HJSGoKbNBnQ">
+                            <div class="flip-card-inner-v2">
+                                <div class="flip-card-front-v2"><h3>Virtual Sculpting</h3></div>
+                                <div class="flip-card-back-v2">
+                                    <p>Artists push and pull meshes as if they were clay.</p>
+                                    <button class="play-btn">▶ Play</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-v2" data-video="https://www.youtube.com/embed/1HXrhHAq0Zo?si=1-3WmeqIgmGL7bHo">
+                            <div class="flip-card-inner-v2">
+                                <div class="flip-card-front-v2"><h3>Blobby Surfaces</h3></div>
+                                <div class="flip-card-back-v2">
+                                    <p>Soft forms such as liquids or clouds.</p>
+                                    <button class="play-btn">▶ Play</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-v2" data-video="https://www.youtube.com/embed/7hq92JvHq2g?si=TRqahyKP-FvtHemn">
+                            <div class="flip-card-inner-v2">
+                                <div class="flip-card-front-v2"><h3>Lattice Deformation</h3></div>
+                                <div class="flip-card-back-v2">
+                                    <p>Smooth deformation of high-resolution models.</p>
+                                    <button class="play-btn">▶ Play</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-v2" data-video="https://www.youtube.com/embed/SbKQEwGSS2M?si=U3iNlJPJIz46IY63">
+                            <div class="flip-card-inner-v2">
+                                <div class="flip-card-front-v2"><h3>Natural Terrains</h3></div>
+                                <div class="flip-card-back-v2">
+                                    <p>Simulating eroded mountains and landscapes.</p>
+                                    <button class="play-btn">▶ Play</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="method-visual-v2">
+                    <img src="images/digital sclupting.jpg" alt="Digital Sculpting Reference">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nurbs" class="section-v2 bg-light reveal-v2">
+        <div class="container-v2">
+            <div class="method-layout-v2">
+                <div class="method-text-v2">
+                    <span class="section-tag-v2">03. Mathematical Precision</span>
+                    <h2>NURBS Modeling</h2>
+                    <p>NURBS (Non-Uniform Rational B-Splines) focus on mathematical representations of curves for industrial-grade precision and perfectly smooth surfaces.</p>
+
+                    <ul class="feature-list-v2">
+                        <li tabindex="0">
+                            <strong>Weighted Control</strong>
+                            Shapes are defined by control points and weights.
+                        </li>
+                        <li tabindex="0">
+                            <strong>Bezier Curves</strong>
+                            High-precision lines defined by tangent handles.
+                        </li>
+                        <li tabindex="0">
+                            <strong>Perfect Splines</strong>
+                            Resolution-independent curved lines.
+                        </li>
+                        <li tabindex="0">
+                            <strong>CAD Standards</strong>
+                            Essential for manufacturing and aerospace.
+                        </li>
+                    </ul>
+                    <div style="margin-top: 40px;">
+                        <button class="btn-primary-v2" onclick="window.location.href='quiz.html'">Test Your Knowledge</button>
+                    </div>
+                </div>
+                <div class="method-visual-v2">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/m9U_XmnHQMU" title="NURBS Modeling Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+	<footer class="footer-container">
+    <div class="footer-content">
+        <div class="footer-column brand-info">
+            <h2>3D Concepts</h2>
+            <p>Breaking down barriers to learning<br>3D design and animation.</p>
+            <div class="social-icons">
+				<a href="https://wa.me/0175545539" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/arieysh" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+               <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Learning</h3>
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="modeling.html">3D Modeling</a></li>
+                <li><a href="texture-lighting.html">Texturing & Lighting</a></li>
+                <li><a href="3D_animation_tutorial.html">Animation</a></li>
+                <li><a href="rendering_tutorial.html">Rendering</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Software</h3>
+            <ul>
+                <li><a href="https://www.blender.org/">Blender</a></li>
+                <li><a href="https://www.foundry.com/ja/products/modo/new-releases">Modo</a></li>
+                <li><a href="https://unity.com/">Unity</a></li>
+                <li><a href="https://www.autodesk.com/asean/products/3ds-max/free-trial">3ds Max</a></li>
+                <li><a href="https://www.sidefx.com/download/">Houdini</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Team</a></li>
+                <li><a href="about.html">FAQ</a></li>
+                <li><a href="about.html">Support</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 3D Concepts. All rights reserved.</p>
+        <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Animation 3D Builder</a>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Updated Observer for -v2 reveal
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-v2').forEach(el => observer.observe(el));
+
+        window.addEventListener('load', function() {
+            const video = document.getElementById('video-background-v2');
+            if(video) video.play().catch(() => {});
+        });
+
+        // Parallax and Tilt Updated for -v2
+        (function () {
+            const map = (v, a, b, c, d) => (v - a) * (d - c) / (b - a) + c;
+            const hero = document.querySelector('.hero-section-v2');
+            const heroChild = document.querySelector('.hero-visual-v2 video, .hero-visual-v2 iframe, .hero-visual-v2 img');
+            
+            if (hero && heroChild) {
+                hero.addEventListener('pointermove', (e) => {
+                    const r = hero.getBoundingClientRect();
+                    const tx = map((e.clientX - r.left) / r.width, 0, 1, -10, 10);
+                    const ty = map((e.clientY - r.top) / r.height, 0, 1, -8, 8);
+                    heroChild.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(1.02)`;
+                });
+                hero.addEventListener('pointerleave', () => heroChild.style.transform = '');
+            }
+
+            document.querySelectorAll('.method-visual-v2').forEach(el => {
+                el.addEventListener('pointermove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const rx = (-(e.clientY - rect.top) / rect.height + 0.5) * 12;
+                    const ry = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+                    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+                });
+                el.addEventListener('pointerleave', () => el.style.transform = '');
+            });
+        })();
+
+        // Modal and Flip Logic Updated for -v2
+       (function () {
+   function openVideoModal(videoUrl) {
+    let modal = document.createElement('div');
+    modal.className = 'video-modal';
+    modal.innerHTML = `
+        <div class="modal-inner">
+            <button class="modal-close">✕</button>
+            <iframe src="${videoUrl}" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>`;
+    document.body.appendChild(modal);
+        document.body.style.overflow = 'hidden';
+
+        // Close logic
+        modal.querySelector('.modal-close').onclick = () => {
+            modal.remove();
+            document.body.style.overflow = '';
+        };
+        
+        // Close on clicking outside the video
+        modal.onclick = (e) => {
+            if(e.target === modal) modal.querySelector('.modal-close').click();
+        };
+    }
+
+    document.querySelectorAll('.flip-card-v2').forEach(card => {
+        // Handle the Play Button specifically
+        const playBtn = card.querySelector('.play-btn');
+        
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // THIS IS THE KEY FIX: Stops the card from flipping
+            const videoUrl = card.getAttribute('data-video');
+            openVideoModal(videoUrl);
+        });
+
+        // Handle the Flip Action
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+    });
+})();
+    </script>
+
+	<script src="script.js"></script>
+	
+</body>
+</html>

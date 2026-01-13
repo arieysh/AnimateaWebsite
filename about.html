@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animatea - About Us</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main shared styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- About page styles -->
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+<!-- NAV -->
+ <nav>
+        <div class="logo">Animatea</div>
+	 <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown-menu-item">
+                <a href="introduction.html">Tutorial</a>
+				<div class="dropdown-content">
+                    <a href="introduction.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Introduction 3D Concepts</h5>
+                        </div>
+                    </a>
+                    <a href="modeling.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>3D Modeling</h5>
+                        </div>
+                    </a>
+                    <a href="texture-lighting.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Texturing & Lighting</h5>
+                        </div>
+                    </a>
+                    <a href="3D_animation_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Animation</h5>
+                        </div>
+                    </a>
+                    <a href="rendering_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Rendering</h5>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+          <div class="nav-actions">
+			<div id="logged-out-UI">
+            <button class="signin" id="navSignIn">Sign In</button>
+			<button class="get-started" id="navGetStarted">Get Started</button>
+        </div>
+			<div id="logged-in-UI" style="display: none; align-items: center; gap: 15px;">
+        <span id="user-display-name" style="font-weight: 600; color: #fff;"></span>
+        <button id="logout-btn" style="background: transparent; border: 1px solid #ccc; color: #fff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Log Out</button>
+    </div>
+		 </div>
+    </nav>
+	
+	<div id="authModal" class="modal">
+    <div class="modal-content all-access-theme">
+        <span class="close-btn">&times;</span>
+
+        <div id="login-container">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to access your courses.</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Log In</button>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <span id="switchToRegister">Register here</span></p>
+            </div>
+        </div>
+
+        <div id="register-container" style="display: none;">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join our community today.</p>
+            </div>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth</label>
+                    <input type="date" id="regDOB" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <span id="switchToLogin">Log In here</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+	<!-- ================= LAYOUT 1 ================= -->
+	<main class="main-content">
+        <h1>We're not just a school.<br>
+        We're a <span class="movement-text">movement.</span></h1>
+    </main>
+	
+	<!-- ================= LAYOUT 2 ================= -->
+	<section class="mission-container">
+        <div class="mission-content">
+            <h2>About Us</h2>
+            
+            <p>We are Group Animate from HC12, working on our group project for the course IM22503 Multimedia Web Programming (1–2025/2026). Our project, titled “Interactive Educational Website”, focuses on teaching 3D animation concepts through a visually engaging and interactive web platform.</p>
+
+            <p>This website allows users to explore 3D animation tutorials, learn from sample animation projects, and participate in interactive quizzes to test their understanding. By integrating multimedia elements such as videos, animations, and interactive components, we aim to provide an educational experience that is informative, engaging, and accessible across different devices.</p>
+
+            <p>All are welcome here, come on in!</p>
+        </div>
+
+        <div class="image-wrapper">
+            <img src="images/group.jpg" alt="animatea" class="profile-img">
+        </div>
+    </section>
+	
+	
+	<!-- ================= LAYOUT 3 ================= -->
+	<section class="video-section">
+    <h2>Our Mission, Animated</h2>
+    
+    <div class="video-container">
+        <video autoplay muted loop playsinline>
+            <source src="video/about.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+	
+	
+
+
+	<!-- ================= TEAM SECTION ================= -->
+<section class="team-section">
+
+    <!-- Dark overlay for readability -->
+    <div class="video-overlay"></div>
+
+    <h1 class="team-title">MEET OUR TEAM</h1>
+
+    <div class="team-grid">
+
+        <!-- MEMBER 1 -->
+        <div class="team-item fade-up">
+            <img src="images/member1.jpeg" alt="Iffah Aqilah">
+            <div class="team-text">
+                <p><strong>NAME:</strong> IFFAH AQILAH</p>
+                <p><strong>STUDENT ID:</strong> BI23110201</p>
+                <p><strong>POSITION:</strong> Project Manager </p>
+            </div>
+        </div>
+
+        <!-- MEMBER 2 -->
+        <div class="team-item fade-up delay-1">
+            <img src="images/member2.jpg" alt="Eaffy Donna Jurimon">
+            <div class="team-text">
+                <p><strong>NAME:</strong> EAFFY DONNA JURIMON</p>
+                <p><strong>STUDENT ID:</strong> BI23110116</p>
+                <p><strong>POSITION:</strong> Front-End Developer </p>
+            </div>
+        </div>
+
+        <!-- MEMBER 3 -->
+        <div class="team-item fade-up delay-2">
+            <img src="images/member3.png" alt="Nithiya Darshini">
+            <div class="team-text">
+                <p><strong>NAME:</strong> NITHIYA DARSHINI A/P SUKUNARAN</p>
+                <p><strong>STUDENT ID:</strong> BI23110091</p>
+                <p><strong>POSITION:</strong> Multimedia Specialist</p>
+            </div>
+        </div>
+
+        <!-- MEMBER 4 -->
+        <div class="team-item fade-up delay-3">
+            <img src="images/member4.jpg" alt="Sharifah Nur Arisya">
+            <div class="team-text">
+                <p><strong>NAME:</strong> SHARIFAH NUR ‘ARISYA BINTI SHAFIE</p>
+                <p><strong>STUDENT ID:</strong> BI23160412</p>
+                <p><strong>POSITION:</strong> Interactive Developer</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+	
+	<footer class="footer-container">
+    <div class="footer-content">
+        <div class="footer-column brand-info">
+            <h2>3D Concepts</h2>
+            <p>Breaking down barriers to learning<br>3D design and animation.</p>
+            <div class="social-icons">
+				<a href="https://wa.me/0175545539" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/arieysh" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+               <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Learning</h3>
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="modeling.html">3D Modeling</a></li>
+                <li><a href="texture-lighting.html">Texturing & Lighting</a></li>
+                <li><a href="3D_animation_tutorial.html">Animation</a></li>
+                <li><a href="rendering_tutorial.html">Rendering</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Software</h3>
+            <ul>
+                <li><a href="https://www.blender.org/">Blender</a></li>
+                <li><a href="https://www.foundry.com/ja/products/modo/new-releases">Modo</a></li>
+                <li><a href="https://unity.com/">Unity</a></li>
+                <li><a href="https://www.autodesk.com/asean/products/3ds-max/free-trial">3ds Max</a></li>
+                <li><a href="https://www.sidefx.com/download/">Houdini</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Team</a></li>
+                <li><a href="about.html">FAQ</a></li>
+                <li><a href="about.html">Support</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 3D Concepts. All rights reserved.</p>
+        <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Animation 3D Builder</a>
+        </div>
+    </div>
+</footer>
+<!-- ================= END ABOUT US ================= -->
+
+
+<!-- ================= ANIMATION SCRIPT ================= -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.about-text, .about-image').forEach(el => {
+    observer.observe(el);
+});
+</script>
+	<script src="script.js"></script>
+
+</body>
+</html>

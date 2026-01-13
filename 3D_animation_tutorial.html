@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Movement: 3D Animation Basics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- External CSS Link -->
+	 <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animation.css">
+
+    <!-- Model Viewer External Library -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body>
+	
+	 <nav>
+        <div class="logo">Animatea</div>
+		 <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown-menu-item">
+                <a href="introduction.html">Tutorial</a>
+				<div class="dropdown-content">
+                    <a href="introduction.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Introduction 3D Concepts</h5>
+                        </div>
+                    </a>
+                    <a href="modeling.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>3D Modeling</h5>
+                        </div>
+                    </a>
+                    <a href="texture-lighting.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Texturing & Lighting</h5>
+                        </div>
+                    </a>
+                    <a href="3D_animation_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Animation</h5>
+                        </div>
+                    </a>
+                    <a href="rendering_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Rendering</h5>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+         <div class="nav-actions">
+			<div id="logged-out-UI">
+            <button class="signin" id="navSignIn">Sign In</button>
+			<button class="get-started" id="navGetStarted">Get Started</button>
+        </div>
+			<div id="logged-in-UI" style="display: none; align-items: center; gap: 15px;">
+        <span id="user-display-name" style="font-weight: 600; color: #fff;"></span>
+        <button id="logout-btn" style="background: transparent; border: 1px solid #ccc; color: #fff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Log Out</button>
+    </div>
+		 </div>
+    </nav>
+	
+	<div id="authModal" class="modal">
+    <div class="modal-content all-access-theme">
+        <span class="close-btn">&times;</span>
+
+        <div id="login-container">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to access your courses.</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Log In</button>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <span id="switchToRegister">Register here</span></p>
+            </div>
+        </div>
+
+        <div id="register-container" style="display: none;">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join our community today.</p>
+            </div>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth</label>
+                    <input type="date" id="regDOB" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <span id="switchToLogin">Log In here</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modal-title" class="modal-title">Title Here</div>
+            <div id="modal-body" class="modal-body">Description here...</div>
+        </div>
+    </div>
+
+    <div class="glossary-trigger" onclick="toggleGlossary()">📖 Glossary</div>
+    <div class="glossary-panel" id="glossaryPanel">
+        <div class="panel-header">
+            <h3>Quick Reference</h3>
+            <span class="close-panel" onclick="toggleGlossary()">&times;</span>
+        </div>
+        <div class="term-item">
+            <h4>Keyframe</h4>
+            <p>A drawing or pose that defines the starting and ending points of any smooth transition.</p>
+        </div>
+        <div class="term-item">
+            <h4>Interpolation</h4>
+            <p>The process where the computer calculates the frames between two keyframes.</p>
+        </div>
+        <div class="term-item">
+            <h4>Rigging</h4>
+            <p>Creating a skeleton of bones and controls for a 3D model so it can be moved.</p>
+        </div>
+        <div class="term-item">
+            <h4>Skinning</h4>
+            <p>Binding the 3D mesh to the rig (bones) so the mesh deforms when bones move.</p>
+        </div>
+        <div class="term-item">
+            <h4>FK (Forward Kinematics)</h4>
+            <p>Moving a chain of bones from the parent down to the child (Shoulder &rarr; Elbow &rarr; Hand).</p>
+        </div>
+        <div class="term-item">
+            <h4>IK (Inverse Kinematics)</h4>
+            <p>Moving the end of the chain, causing parents to follow (Hand moves &rarr; Elbow/Shoulder adjust).</p>
+        </div>
+    </div>
+
+    <div class="string-container">
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path id="scroll-path" d="" />
+        </svg>
+    </div>
+
+    
+    <header class="subpage-hero" id="hero">
+        <video autoplay muted loop playsinline class="bg-video">
+            <source src="video/bg_animation.mp4" type="video/mp4">
+        </video>
+        
+        <div class="subpage-hero-layout">
+             <div class="hero-text-column hero-animate">
+                <span class="subpage-tag">Beginner Course</span>
+                <h1>The Art of Movement: 3D Animation Basics</h1>
+                <p>Understand how motion is built step by step using basic techniques, keyframes, and timeline controls before moving to advanced software.</p>
+            </div>
+            <div class="hero-image-column hero-animate hero-delay">
+                <model-viewer src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb" alt="A dancing robot" autoplay animation-name="Dance" auto-rotate camera-controls shadow-intensity="1"></model-viewer>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-container">
+        <section class="scroll-section">
+            <div class="section-sticky-header">
+                <span>01</span>
+                <h2>Core<br>Principles</h2>
+                <p>Theory of Movement</p>
+            </div>
+            <div class="section-content-col">
+                
+                <div class="overview-card reveal">
+                    <h3 style="color: #fff; margin-bottom: 20px;">Storytelling Timing</h3>
+                    <div class="cards-row">
+                        <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                            <div class="flipper">
+                                <div class="card-front">
+                                    <div class="icon-circle">🕵️‍♀️</div>
+                                    <div class="card-title">Ahead</div>
+                                    <div class="card-subtitle">Mystery</div>
+                                </div>
+                                <div class="card-back">
+                                    <p style="font-size:13px;">Character knows more than you.</p>
+                                    <button class="flip-details-btn" onclick="event.stopPropagation(); openDetails('ahead')">Tap for Analysis</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                            <div class="flipper">
+                                <div class="card-front">
+                                    <div class="icon-circle">💣</div>
+                                    <div class="card-title">Behind</div>
+                                    <div class="card-subtitle">Suspense</div>
+                                </div>
+                                <div class="card-back">
+                                    <p style="font-size:13px;">You know danger is coming.</p>
+                                    <button class="flip-details-btn" onclick="event.stopPropagation(); openDetails('behind')">Tap for Analysis</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                            <div class="flipper">
+                                <div class="card-front">
+                                    <div class="icon-circle">⏳</div>
+                                    <div class="card-title">Parallel</div>
+                                    <div class="card-subtitle">Pacing</div>
+                                </div>
+                                <div class="card-back">
+                                    <p style="font-size:13px;">Two events at once.</p>
+                                    <button class="flip-details-btn" onclick="event.stopPropagation(); openDetails('parallel')">Tap for Analysis</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="simulator reveal">
+                    <div class="sim-header"><span class="badge">PRACTICE</span> Identify the Technique</div>
+                    <div class="sim-grid">
+                        <div class="scenario-box">
+                            <div style="font-size: 12px; color: #ccc; margin-bottom: 5px;">SCENARIO:</div>
+                            <div id="scenario-text" style="font-style: italic;">"The audience sees a ticking bomb under the table, but the two characters eating dinner are discussing their vacation plans happily."</div>
+                        </div>
+                        <div>
+                            <button onclick="checkAnswer('behind')" class="btn-option">Behind Story (Suspense)</button>
+                            <button onclick="checkAnswer('ahead')" class="btn-option">Ahead of Story (Mystery)</button>
+                            <button onclick="checkAnswer('parallel')" class="btn-option">Parallel Action (Pacing)</button>
+                            <div id="feedback-area" class="feedback"></div>
+                            <button onclick="nextScenario()" id="next-btn" class="next-btn">Next Scenario &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-card reveal">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                        <h3 style="color: #fff;">The 12 Principles</h3>
+                        <span class="scroll-hint">Scroll &rarr;</span>
+                    </div>
+                    <div class="horizontal-scroll-wrapper">
+                        <div class="scroll-container">
+                            <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">🏀</span> Squash & Stretch</h4><p class="principle-desc">Volume flexibility.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('squash')">More Details &nearr;</button>
+                            </div>
+                            <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">🤔</span> Anticipation</h4><p class="principle-desc">Preparation for action.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('anticipation')">More Details &nearr;</button>
+                            </div>
+                            <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">🎭</span> Staging</h4><p class="principle-desc">Clear presentation.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('staging')">More Details &nearr;</button>
+                            </div>
+                            <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">✏️</span> Straight Ahead</h4><p class="principle-desc">Frame-by-frame vs Keyframes.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('straight')">More Details &nearr;</button>
+                            </div>
+                            <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">🌊</span> Follow Through</h4><p class="principle-desc">Overlapping action.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('follow')">More Details &nearr;</button>
+                            </div>
+                            <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">🚗</span> Slow In & Out</h4><p class="principle-desc">Acceleration physics.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('slow')">More Details &nearr;</button>
+                            </div>
+                            <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">↩️</span> Arcs</h4><p class="principle-desc">Natural movement paths.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('arcs')">More Details &nearr;</button>
+                            </div>
+                             <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">🥤</span> Secondary Action</h4><p class="principle-desc">Supports main action.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('secondary')">More Details &nearr;</button>
+                            </div>
+                             <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">⏱️</span> Timing</h4><p class="principle-desc">Speed defines weight.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('timing')">More Details &nearr;</button>
+                            </div>
+                             <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">😲</span> Exaggeration</h4><p class="principle-desc">Pushing for appeal.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('exaggeration')">More Details &nearr;</button>
+                            </div>
+                             <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">📦</span> Solid Drawing</h4><p class="principle-desc">3D space & volume.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('solid')">More Details &nearr;</button>
+                            </div>
+                             <div class="principle-card">
+                                <div><h4 class="principle-title"><span class="icon">✨</span> Appeal</h4><p class="principle-desc">Charisma & design.</p></div>
+                                <button class="more-details-btn" onclick="openDetails('appeal')">More Details &nearr;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="scroll-section">
+            <div class="section-sticky-header">
+                <span>02</span>
+                <h2>Tech<br>Concepts</h2>
+                <p>Interactive Labs</p>
+            </div>
+            <div class="section-content-col">
+                
+                <div class="interactive-section-bg reveal">
+                    <h3 style="margin-bottom: 20px;">01. Interpolation Visualizer</h3>
+                    <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 20px;">
+                        <strong>Interpolation</strong> is the math between frames. See how the "Graph Curve" changes the feel of the movement.
+                    </p>
+                    
+                    <div class="lab-container">
+                        <div class="track-row">
+                            <div class="track-label">Linear (Robotic)</div>
+                            <div class="track-line">
+                                <div class="moving-ball" id="ball-linear"></div>
+                            </div>
+                        </div>
+                        <div class="track-row">
+                            <div class="track-label">Bezier (Organic)</div>
+                            <div class="track-line">
+                                <div class="moving-ball" id="ball-bezier"></div>
+                            </div>
+                        </div>
+                        <button class="lab-btn" onclick="playInterpolation()">▶ Play Animation</button>
+                    </div>
+                </div>
+
+                <div class="interactive-section-bg reveal">
+                    <h3 style="margin-bottom: 20px;">02. Kinematics (FK vs IK)</h3>
+                    <div class="kinematics-grid">
+                        <div class="tech-card fk-card">
+                            <h4>Forward Kinematics (FK)</h4>
+                            <p>Parent rotates Child.</p>
+                            <div class="skeleton-visual">
+                                <svg width="100%" height="120" viewBox="0 0 200 120">
+                                    <circle cx="30" cy="60" r="8" fill="#6c5ce7" />
+                                    <line x1="30" y1="60" x2="100" y2="60" stroke="white" stroke-width="4" class="bone-1" />
+                                    <circle cx="100" cy="60" r="6" fill="#6c5ce7" class="joint-1" />
+                                    <line x1="100" y1="60" x2="160" y2="60" stroke="white" stroke-width="4" class="bone-2" />
+                                    <circle cx="160" cy="60" r="4" fill="#FFEB3B" class="joint-2" />
+                                </svg>
+                            </div>
+                            <p class="tiny-note">Shoulder moves elbow, elbow moves hand.</p>
+                        </div>
+
+                        <div class="tech-card ik-card">
+                            <h4>Inverse Kinematics (IK)</h4>
+                            <p>Child affects Parent.</p>
+                            <div class="skeleton-visual">
+                                <svg width="100%" height="120" viewBox="0 0 200 120">
+                                    <circle cx="160" cy="60" r="10" stroke="#FFEB3B" stroke-width="2" fill="none" class="ik-target" />
+                                    <polyline points="30,60 90,90 160,60" fill="none" stroke="white" stroke-width="4" class="ik-limb" />
+                                    <circle cx="30" cy="60" r="8" fill="#6c5ce7" />
+                                    <circle cx="90" cy="90" r="6" fill="#6c5ce7" />
+                                    <circle cx="160" cy="60" r="4" fill="#FFEB3B" />
+                                </svg>
+                            </div>
+                            <p class="tiny-note">Hand moves, arm calculates position.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interactive-section-bg reveal">
+                    <h3 style="margin-bottom: 10px;">03. Procedural Dynamics</h3>
+                    <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 20px;">
+                        Move your mouse below. Instead of animating every dot, we write a rule (code) and the computer simulates the physics.
+                    </p>
+                    <canvas id="particleCanvas"></canvas>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="scroll-section">
+            <div class="section-sticky-header">
+                <span>03</span>
+                <h2>Workflow</h2>
+                <p>Step-by-Step</p>
+            </div>
+            <div class="section-content-col">
+                <div class="interactive-section-bg reveal">
+                    <div class="timeline-container">
+                        <div class="timeline-progress" id="timeline-progress"></div>
+
+                        <div class="timeline-step">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3 style="margin: 0 0 5px 0;">Phase 1: Mesh Prep</h3>
+                                <p style="color:#aaa;">Use <kbd>Ctrl</kbd> + <kbd>R</kbd> for Loop Cuts. Apply modifiers.</p>
+                                <button class="transcript-btn" onclick="toggleTranscript('t1')">View Details &darr;</button>
+                                <div class="transcript-content" id="t1">
+                                    <div class="transcript-text">
+                                        Topology matters! Ensure your mesh has "clean quads" (4-sided polygons) especially at joints like elbows and knees. This allows for smooth bending without collapsing the mesh.
+                                    </div>
+                                </div>
+                                <div class="video-embed">
+                                    <iframe src="https://www.youtube.com/embed/htUSO7YUK9g" title="Phase 1" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3 style="margin: 0 0 5px 0;">Phase 2: Rigging</h3>
+                                <p style="color:#aaa;">Add Armature <kbd>Shift</kbd> + <kbd>A</kbd>. Extrude bones.</p>
+                                <button class="transcript-btn" onclick="toggleTranscript('t2')">View Details &darr;</button>
+                                <div class="transcript-content" id="t2">
+                                    <div class="transcript-text">
+                                        Think of rigging as building a digital skeleton. Name your bones correctly (e.g., Forearm.L, Forearm.R) so that Blender's X-axis mirror features work automatically.
+                                    </div>
+                                </div>
+                                <div class="video-embed">
+                                    <iframe src="https://www.youtube.com/embed/m-Obo_nC3SM" title="Phase 2" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3 style="margin: 0 0 5px 0;">Phase 3: Skinning</h3>
+                                <p style="color:#aaa;">Bind Mesh to Armature with "Automatic Weights".</p>
+                                <button class="transcript-btn" onclick="toggleTranscript('t3')">View Details &darr;</button>
+                                <div class="transcript-content" id="t3">
+                                    <div class="transcript-text">
+                                        Skinning determines which vertices move with which bone. "Weight Painting" visualizes this influence with color: Red (100% influence) to Blue (0% influence).
+                                    </div>
+                                </div>
+                                <div class="video-embed">
+                                    <iframe src="https://www.youtube.com/embed/KZqdirR2vVM" title="Phase 3" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3 style="margin: 0 0 5px 0;">Phase 4: Animation</h3>
+                                <p style="color:#aaa;">Pose Mode. Insert Keyframe <kbd>I</kbd>.</p>
+                                <button class="transcript-btn" onclick="toggleTranscript('t4')">View Details &darr;</button>
+                                <div class="transcript-content" id="t4">
+                                    <div class="transcript-text">
+                                        Switch to the "Dope Sheet" or "Graph Editor" view to manage your keyframes. Use the principle of 'Pose-to-Pose' animation for better control over timing.
+                                    </div>
+                                </div>
+                                <div class="video-embed">
+                                    <iframe src="https://www.youtube.com/embed/xACMr9nFELU" title="Phase 4" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-section" style="padding-bottom: 0;">
+            <div class="section-content-col" style="max-width: 1000px; border: none; padding-left: 0;">
+                
+                <div class="director-stage-container reveal">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h3 style="font-size: 2rem; margin-bottom: 10px; color: #fff;">Final Challenge: Take Control</h3>
+                        <p style="color: #aaa;">Explore hosted models. (Note: External embeds have their own built-in controls).</p>
+                    </div>
+
+                    <div class="stage-viewport" id="stage-bg">
+                        <iframe title="Sonic-lost-world-sonic-model" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/f0fc312eef804b85afecce3d0bcc91e0/embed" style="width:100%; height:100%; border: none;"> </iframe>
+                    </div>
+
+                    <div class="stage-hud">
+                        <div class="hud-message">Sketchfab Showcase View</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+	
+	<footer class="footer-container">
+    <div class="footer-content">
+        <div class="footer-column brand-info">
+            <h2>3D Concepts</h2>
+            <p>Breaking down barriers to learning<br>3D design and animation.</p>
+            <div class="social-icons">
+				<a href="https://wa.me/0175545539" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/arieysh" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+               <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Learning</h3>
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="modeling.html">3D Modeling</a></li>
+                <li><a href="texture-lighting.html">Texturing & Lighting</a></li>
+                <li><a href="3D_animation_tutorial.html">Animation</a></li>
+                <li><a href="rendering_tutorial.html">Rendering</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Software</h3>
+            <ul>
+                <li><a href="https://www.blender.org/">Blender</a></li>
+                <li><a href="https://www.foundry.com/ja/products/modo/new-releases">Modo</a></li>
+                <li><a href="https://unity.com/">Unity</a></li>
+                <li><a href="https://www.autodesk.com/asean/products/3ds-max/free-trial">3ds Max</a></li>
+                <li><a href="https://www.sidefx.com/download/">Houdini</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Team</a></li>
+                <li><a href="about.html">FAQ</a></li>
+                <li><a href="about.html">Support</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 3D Concepts. All rights reserved.</p>
+        <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Animation 3D Builder</a>
+        </div>
+    </div>
+</footer>
+
+    <!-- External JS Link -->
+    <script src="animation.js"></script>
+	<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction</title>
+	<link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="introductionStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<meta name="referrer" content="strict-origin-when-cross-origin">
+</head>
+<body>
+
+   <nav>
+        <div class="logo">Animatea</div>
+	   
+	   <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+	   
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown-menu-item">
+                <a href="introduction.html">Tutorial</a>
+				<div class="dropdown-content">
+                    <a href="introduction.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Introduction 3D Concepts</h5>
+                        </div>
+                    </a>
+                    <a href="modeling.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>3D Modeling</h5>
+                        </div>
+                    </a>
+                    <a href="texture-lighting.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Texturing & Lighting</h5>
+                        </div>
+                    </a>
+                    <a href="3D_animation_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Animation</h5>
+                        </div>
+                    </a>
+                    <a href="rendering_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Rendering</h5>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+         <div class="nav-actions">
+			<div id="logged-out-UI">
+            <button class="signin" id="navSignIn">Sign In</button>
+			<button class="get-started" id="navGetStarted">Get Started</button>
+        </div>
+			<div id="logged-in-UI" style="display: none; align-items: center; gap: 15px;">
+        <span id="user-display-name" style="font-weight: 600; color: #fff;"></span>
+        <button id="logout-btn" style="background: transparent; border: 1px solid #ccc; color: #fff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Log Out</button>
+    </div>
+		 </div>
+    </nav>
+	
+	<div id="authModal" class="modal">
+    <div class="modal-content all-access-theme">
+        <span class="close-btn">&times;</span>
+
+        <div id="login-container">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to access your courses.</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Log In</button>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <span id="switchToRegister">Register here</span></p>
+            </div>
+        </div>
+
+        <div id="register-container" style="display: none;">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join our community today.</p>
+            </div>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth</label>
+                    <input type="date" id="regDOB" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <span id="switchToLogin">Log In here</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+	
+	<div class="hero-glow"></div>
+
+<main class="hero-container">
+    <div class="badge">
+        <span class="dot"></span> LEARN 3D
+    </div>
+
+    <h1 class="hero-title">
+        Introduction<br>
+        <span class="accent-text">3D Animation</span>
+    </h1>
+
+    <p class="hero-description">
+        3D animation is the creation of moving visuals in a three-dimensional digital space, where objects have width, height, and depth. It involves creating 3D models, applying textures and lighting, animating movement, and rendering the final output.
+    </p>
+
+    <div class="video-preview-wrapper">
+    <div class="video-card">
+        <iframe 
+            src="https://www.youtube-nocookie.com/embed/-ic0nCJWhgo?rel=0&enablejsapi=1&origin=http://127.0.0.1:5500" 
+            title="Introduction to 3D Concepts" 
+            frameborder="0"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    <div class="scroll-indicator">↓</div>
+</div>
+</main>
+	
+	<section class="features-section">
+    <div class="features-header">
+        <div class="badge small">FEATURED CONTENT</div>
+        <h2>Discover <span class="blue-accent">500+ hours</span> of epic training content</h2>
+        <p>Spanning animation, design, VFX and 3D across all major industries</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="card-icon">🎬</div>
+            <h3>Film & Animation</h3>
+            <p>Create stunning visual effects, animated characters, and immersive cinematic experiences for movies and television.</p>
+            <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-icon">🎮</div>
+            <h3>Gaming</h3>
+            <p>Build interactive 3D environments, character models, and assets that bring video games to life across all platforms.</p>
+            <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-icon">📐</div>
+            <h3>Product Design</h3>
+            <p>Visualize and prototype products before manufacturing, from industrial design to consumer electronics and architecture.</p>
+            <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+
+        <div class="feature-card">
+            <div class="card-icon">👓</div>
+            <h3>Virtual Reality</h3>
+            <p>Develop immersive VR experiences and environments that transport users into fully realized three-dimensional worlds.</p>
+            <a href="#" class="learn-more">Learn More <span>→</span></a>
+        </div>
+    </div>
+</section>
+	
+	<section class="pipeline-section">
+    <div class="pipeline-header">
+        <h2>The <span class="blue-accent">3D Pipeline</span></h2>
+        <p>Understanding the workflow from concept to final render</p>
+    </div>
+
+    <div class="pipeline-container">
+        <a href="modeling.html" class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon">📦</div>
+            <h3>Modeling</h3>
+            <p>Creating 3D geometry and shapes</p>
+            <div class="arrow">→</div>
+        </a>
+
+        <a href="texture-lighting.html" class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon">🎨</div>
+            <h3>Texturing</h3>
+            <p>Adding colors and surface details</p>
+            <div class="arrow">→</div>
+        </a>
+
+        <a href="texture-lighting.html" class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon">💡</div>
+            <h3>Lighting</h3>
+            <p>Setting up lights and shadows</p>
+            <div class="arrow">→</div>
+        </a>
+
+        <a href="3D_animation_tutorial.html" class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-icon">🏃</div>
+            <h3>Animation</h3>
+            <p>Bringing objects to life with movement</p>
+            <div class="arrow">→</div>
+        </a>
+
+        <a href="rendering_tutorial.html" class="step-card last">
+            <div class="step-number">05</div>
+            <div class="step-icon">🖼️</div>
+            <h3>Rendering</h3>
+            <p>Final output and post-processing</p>
+        </a>
+    </div>
+</section>
+	
+	<section class="action-section">
+    <div class="action-container">
+        <div class="action-content">
+            <div class="badge-outline">
+                <span class="play-icon">▶</span> VIDEO TUTORIAL
+            </div>
+            <h2>See 3D in <span class="blue-accent">Action</span></h2>
+            <p>Watch our comprehensive introduction to 3D concepts and discover how professionals create stunning three-dimensional content. This video covers the essential principles, techniques, and workflows used nowadays.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Hours Content</p>
+                </div>
+                <div class="stat-item">
+                    <h3>25K+</h3>
+                    <p>Students</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4.9</h3>
+                    <p>Rating</p>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-full-course">
+                View Full Course <span class="arrow-right">→</span>
+            </a>
+        </div>
+
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/YfL7vll73BM" 
+                title="3D Tutorial Video" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</section>
+	
+	<section class="tools-section">
+    <div class="tools-header">
+        <h2>The <span class="blue-accent">tools</span> you'll learn</h2>
+        <p>Mastering industry tools is a valuable skill for your future career. As an Animatea-certified training center, we support students in learning efficiently and building real-world skills.</p>
+    </div>
+
+    <div class="tools-grid">
+        <div class="tool-box"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg" alt="Ae"></div>
+        <div class="tool-box"><img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Ps"></div>
+        <div class="tool-box"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Ai"></div>
+        <div class="tool-box"><img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg" alt="Pr"></div>
+        <div class="tool-box"><img src="images/unity.jpg" alt="Unity"></div>
+        
+        <div class="tool-box"><img src="images/modo.jpg" alt="Modo"></div>
+        <div class="tool-box"><img src="images/sketchup.jpg" alt="Sketchup"></div>
+        <div class="tool-box"><img src="images/tinkercad.jpg" alt="Tinkercad"></div>
+        <div class="tool-box"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg" alt="Blender"></div>
+        <div class="tool-box"><img src="images/substance.jpg" alt="Subtance"></div>
+    </div>
+
+</section>
+	<footer class="footer-container">
+    <div class="footer-content">
+        <div class="footer-column brand-info">
+            <h2>3D Concepts</h2>
+            <p>Breaking down barriers to learning<br>3D design and animation.</p>
+            <div class="social-icons">
+				<a href="https://wa.me/0175545539" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/arieysh" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+               <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Learning</h3>
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="modeling.html">3D Modeling</a></li>
+                <li><a href="texture-lighting.html">Texturing & Lighting</a></li>
+                <li><a href="3D_animation_tutorial.html">Animation</a></li>
+                <li><a href="rendering_tutorial.html">Rendering</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Software</h3>
+            <ul>
+                <li><a href="https://www.blender.org/">Blender</a></li>
+                <li><a href="https://www.foundry.com/ja/products/modo/new-releases">Modo</a></li>
+                <li><a href="https://unity.com/">Unity</a></li>
+                <li><a href="https://www.autodesk.com/asean/products/3ds-max/free-trial">3ds Max</a></li>
+                <li><a href="https://www.sidefx.com/download/">Houdini</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Team</a></li>
+                <li><a href="about.html">FAQ</a></li>
+                <li><a href="about.html">Support</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 3D Concepts. All rights reserved.</p>
+        <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Animation 3D Builder</a>
+        </div>
+    </div>
+</footer>
+<script src="script.js"></script>
+	
+</body>
+</html>

@@ -1,0 +1,272 @@
+/* ================= BASE ================= */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f1a;
+}
+
+/* ================= START SCREEN POPUP ================= */
+.start-screen {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.start-popup {
+    background: #fff; /* Light background for black text */
+    padding: 50px 60px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    animation: popup-fade 1s ease-out;
+}
+
+/* Title */
+.popup-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000; /* Black text */
+    margin-bottom: 15px;
+    animation: text-bounce 1.2s ease infinite alternate;
+}
+
+/* Short description below title */
+.popup-desc {
+    font-size: 16px;
+    color: #333;  /* Dark gray */
+    margin-bottom: 30px;  /* Space before button */
+    animation: desc-fade 1.2s ease forwards;
+}
+
+/* Text bounce animation for title */
+@keyframes text-bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+/* Fade-in animation for description */
+@keyframes desc-fade {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Popup fade-in */
+@keyframes popup-fade {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Start Button */
+.start-btn {
+    background: #7A3F9A;
+    color: #fff;
+    padding: 18px 50px;
+    border-radius: 30px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.start-btn:hover {
+    background: #9955c2;
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* ================= VIDEO SECTION ================= */
+.video-section {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Dark overlay */
+.video-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 25, 0.55);
+    z-index: 0;
+}
+
+/* ================= QUIZ ================= */
+.quiz-wrapper {
+    position: relative;
+    z-index: 5; /* Ensure quiz is above video */
+    padding: 140px 20px 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.quiz-container {
+    background: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    width: 100%;
+    max-width: 800px;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    color: #111; /* Default dark text */
+}
+
+/* ================= QUIZ HEADER ================= */
+.quiz-header {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.topic-label {
+    background: #eef4ff;
+    color: #4f6ef7;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* ================= QUESTION ================= */
+.question-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: #111; /* Ensure dark text over video */
+    margin-bottom: 20px;
+}
+
+/* ================= OPTIONS ================= */
+.options-container {
+    display: grid;
+    gap: 12px;
+}
+
+.option-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    color: #111; /* Dark text */
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+}
+
+.option-btn:hover {
+    background: #eaeaff;
+    border-color: #7A3F9A;
+}
+
+.option-btn.correct {
+    background: #c8f7c5;
+    color: #111; /* Keep text readable */
+}
+
+.option-btn.wrong {
+    background: #f7c5c5;
+    color: #111; /* Keep text readable */
+}
+
+/* ================= QUIZ FOOTER ================= */
+.quiz-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-back {
+    background: #eee;
+    padding: 12px 25px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-next {
+    background: #7A3F9A;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ================= PROGRESS TEXT ================= */
+#progress-text {
+    color: #333;
+    font-weight: 600;
+}
+
+/* ================= RESULT BUTTONS ================= */
+.result-btn {
+    background: #4f6ef7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.result-btn:hover {
+    background: #3950b3;
+    transform: scale(1.05);
+}
+
+/* ===== CUSTOM POPUP ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-box {
+    background: white;
+    padding: 40px 45px;          /* ⬅ increased box padding */
+    border-radius: 18px;
+    text-align: center;
+    max-width: 360px;
+}
+
+.modal-box h3 {
+    color: #000;                 /* ⬅ black title */
+    margin-bottom: 15px;         /* ⬅ space below title */
+}
+
+.modal-box p {
+    color: #000;                 /* ⬅ black message text */
+    margin-bottom: 25px;         /* ⬅ space before button */
+    font-size: 16px;
+}
+
+.modal-btn {
+    background: #7A3F9A;
+    color: white;
+    border: none;
+    padding: 12px 32px;          /* ⬅ bigger button padding */
+    border-radius: 22px;
+    cursor: pointer;
+    font-size: 14px;
+}

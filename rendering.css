@@ -1,0 +1,364 @@
+/* --- 1. CORE THEME VARIABLES --- */
+:root {
+    --bg-dark: #3b2c4d;          
+    --bg-card: rgba(255, 255, 255, 0.03); /* Glass effect */
+    --bg-nav: rgba(26, 26, 46, 0.95);        
+    --primary: #6c5ce7;          
+    --secondary: #B06AB3;
+    --accent: #FFEB3B;           
+    --text-light: #ffffff;
+    --text-muted: #a0a0a0;
+    --border-glass: rgba(255, 255, 255, 0.1);
+}
+
+/* --- RESET & BASIC STYLES --- */
+/* We target the tutorial page specifically to avoid breaking the main page */
+.tutorial-page-body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.tutorial-page-body a { text-decoration: none; color: inherit; }
+.tutorial-page-body ul { list-style: none; }
+
+
+
+/* --- HERO SECTION --- */
+.tutorial-hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--bg-dark);
+    padding: 0 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.tut-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.2;
+}
+
+.tut-hero-content { 
+    position: relative; 
+    z-index: 1; 
+    margin-top: 100px;
+}
+
+.subpage-tag {
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.tutorial-hero h1 {
+    font-size: 3.5rem;
+    color: var(--text-light);
+
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+}
+
+.tutorial-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* --- CONTENT CONTAINER --- */
+.tut-main-container {
+    max-width: 1000px;
+    margin: 50px auto 50px;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- SECTIONS (Dark Glass Cards) --- */
+.tutorial-section {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    
+    opacity: 0; 
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.tutorial-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-header {
+    border-left: 4px solid var(--primary);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.section-header p { color: var(--text-muted); font-style: italic; }
+
+.content-block { margin-bottom: 2.5rem; }
+.content-block:last-child { margin-bottom: 0; }
+
+.content-block h3 {
+    color: var(--text-light);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-block p { margin-bottom: 1rem; color: var(--text-muted); }
+
+.content-block ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-block ul li {
+    list-style-type: disc;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+/* --- IMAGES --- */
+.tutorial-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-glass);
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.tutorial-img:hover { 
+    opacity: 1; 
+    transform: scale(1.01);
+    border-color: var(--primary);
+}
+
+/* --- TABLES --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-glass);
+}
+
+.data-table th, .data-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-glass);
+    color: var(--text-light);
+}
+
+.data-table th {
+    background-color: rgba(108, 92, 231, 0.2);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover { background-color: var(--border-glass); }
+
+/* --- INTERACTIVE CARDS --- */
+.concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.concept-card {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-glass);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.concept-card:hover, .concept-card.active-card { 
+    transform: translateY(-5px); 
+    border-color: var(--primary); 
+    background-color: rgba(255,255,255,0.08);
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.2);
+}
+
+.concept-card h4 { color: var(--text-light); margin-bottom: 0.5rem; font-size: 1.1rem; }
+.concept-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+.highlight-box {
+    background: linear-gradient(45deg, rgba(108, 92, 231, 0.2), transparent);
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Simulator Styles */
+.simulator-box {
+    background-color: rgba(0,0,0,0.3);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.sim-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.sim-btn {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--bg-card);
+    color: var(--text-light);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sim-btn:hover, .sim-btn.active {
+    background-color: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.preview-sphere {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    background-color: #555;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* --- STEP LIST --- */
+.step-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.step-item {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-glass);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* --- POP-OUT MODAL (Unique naming) --- */
+.tut-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tut-modal-overlay.open {
+    display: flex;
+    opacity: 1;
+}
+
+.tut-modal-card {
+    background: #2a2a3c;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 30px rgba(108, 92, 231, 0.4);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.tut-modal-overlay.open .tut-modal-card {
+    transform: scale(1);
+}
+
+/* --- FOOTER (Unique naming) --- */
+.tut-footer {
+    background-color: #0f0f0f;
+    padding: 4rem 5% 2rem;
+    border-top: 1px solid #333;
+    color: var(--text-muted);
+}
+
+.tut-footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .tut-nav-links { display: none; }
+    .tutorial-hero h1 { font-size: 2.5rem; }
+    .tut-footer-container { flex-direction: column; }
+    .tutorial-section { padding: 1.5rem; }
+}

@@ -1,0 +1,1419 @@
+/* General Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #3b2c4d; /* Dark fallback */
+    color: #ffffff;
+}
+
+/* Background Gradient from the Video */
+.hero-section {
+    position: relative;
+    /* Create the purple/pink gradient background */
+    background: linear-gradient(135deg, #7A3F9A 0%, #B06AB3 50%, #D889AD 100%);
+    /* Set to fill the viewport height, or slightly less than 100vh if nav is fixed */
+    min-height: calc(100vh - 200px); /* Adjust based on desired visibility of the slider below */
+    padding-top: 80px; /* Space for the fixed navigation */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 150px; /* Space to push the content up */
+}
+
+/* --- Navigation Bar Styling --- */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex; /* This is correct, uses flexbox */
+    justify-content: space-between; /* This is correct, pushes logo/links/actions apart */
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(43, 30, 60, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+	box-sizing: border-box;
+}
+
+.menu-toggle {
+    display: none; /* Hide on laptops */
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    
+    /* --- NEW ADDITIONS --- */
+    flex-shrink: 0;         /* Prevents the link list from shrinking */
+    align-items: center;    /* Ensures all links are perfectly centered vertically */
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+/* --- Dropdown Specific Styling --- */
+
+/* 1. Ensure the parent list item is positioned relatively */
+.dropdown-menu-item {
+    position: relative;
+    padding-bottom: 15px; 
+    padding-top: 15px; 
+    display: flex; /* Change to flex for better vertical alignment */
+    align-items: center;
+}
+
+.dropdown-menu-item > a {
+    white-space: nowrap;
+}
+
+/* 2. Style the dropdown box itself */
+.dropdown-content {
+    /* Position absolutely relative to the parent list item */
+    position: absolute;
+    top: 100%; /* Position right below the "Courses" link */
+    left: 50%; /* Center the dropdown horizontally */
+    transform: translateX(-50%); /* Adjust to truly center it */
+    
+    /* Dark background to match the screenshot */
+    background-color: #3b2c4d; 
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    min-width: 250px;
+    z-index: 2000;
+    
+    /* Hide by default */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* 3. Show the dropdown on hover */
+.dropdown-menu-item:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 4. Style the individual links inside the dropdown */
+.dropdown-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #ccc;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover background */
+    color: #fff;
+}
+
+.dropdown-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    /* Use a color that stands out, similar to the screenshot's purple/blue */
+    color: #B06AB3; 
+}
+
+.link-details h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff; /* White title text */
+    margin: 0;
+}
+
+.link-details p {
+    font-size: 12px;
+    color: #ccc; /* Lighter grey description text */
+    margin: 0;
+}
+
+/* Optional: Add a small arrow on top of the dropdown for style */
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -8px; 
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 15px;
+    height: 15px;
+    background-color: #3b2c4d; 
+    z-index: 1; /* Make sure it's behind the content */
+}
+
+.nav-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signin {
+    background: transparent;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.get-started {
+    background: #6ba5ff; /* Blue color */
+    color: #fff;
+}
+
+#logged-in-UI {
+    display: none; /* Keep hidden until login success */
+}
+
+#user-display-name {
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.modal-footer span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Ensure the modal content can scroll if the form is long */
+.modal-content.all-access-theme {
+    max-height: 90vh; /* Limits height to 90% of the screen */
+    overflow-y: auto; /* Adds a scrollbar if content overflows */
+    position: relative;
+    padding: 40px;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #5d24d6 #f1f1f1;
+}
+
+/* Custom scrollbar for Chrome/Safari */
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background: #5d24d6;
+    border-radius: 10px;
+}
+
+/* Make sure buttons in modal stay at the bottom of their groups */
+.btn-continue {
+    width: 100%; /* Ensures the button matches the width of the inputs */
+    padding: 14px;
+    background: linear-gradient(90deg, #5d24d6, #7A3F9A); /* Purple gradient theme */
+    color: white;
+    border: none;
+    border-radius: 10px; /* Rounded corners to match your UI */
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 25px; /* Adds space above the button */
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-continue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(93, 36, 214, 0.4);
+}
+
+/* Style for the clickable toggle spans */
+#switchToRegister, #switchToLogin {
+    color: #5d24d6;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.auth-close-x {
+    position: absolute;
+    right: 20px;   /* Slightly tighter to the edge for mobile */
+    top: 15px;
+    font-size: 35px; /* Larger hit area for fingers */
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 3100; /* Ensure it is HIGHER than .modal-content */
+    padding: 10px;
+}
+
+.auth-close-x:hover {
+    color: #333; /* Darkens when hovered */
+}
+
+/* --- Hero Content Styling --- */
+.hero-section {
+    position: relative;
+    /* Remove the old gradient background */
+    /* background: linear-gradient(135deg, #7A3F9A 0%, #B06AB3 50%, #D889AD 100%); */
+    
+    /* Set dimensions */
+    min-height: calc(100vh - 200px); 
+    padding-top: 80px; 
+    padding-bottom: 150px; 
+    
+    /* Ensure content wrapper and video are aligned */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Important for video scaling */
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 5; /* Ensure content is above the video */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Video Background Styling */
+#video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Scale the video to cover the entire container */
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Keep video behind the content */
+    object-fit: cover; /* Ensures video covers the area without letterboxing */
+}
+
+/* Optional: Add a dark or colored overlay for text legibility */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* 40% opaque dark overlay */
+    z-index: 2; /* Between video (1) and content (5) */
+}
+
+.hero-content {
+    position: relative;
+    max-width: 800px;
+    width: 90%;
+    text-align: center; /* Center for mobile */
+    z-index: 10;
+    padding: 20px;
+}
+
+/* On Laptops, align text to the left */
+@media screen and (min-width: 1024px) {
+    .hero-content {
+        text-align: left;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 36px; /* Smaller font for phones */
+    }
+    .description {
+        font-size: 16px;
+    }
+}
+.new-course {
+    color: #FFEB3B; /* Yellow color */
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.description {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+}
+
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+    padding: 12px 25px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #6ba5ff; /* Blue for Start Learning */
+    color: #fff;
+    margin-right: 15px;
+	text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: #6ba5ff;
+}
+
+.btn-secondary {
+    background: transparent;
+    border-color: #fff;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* --- Horizontal Slider Section --- */
+.course-slider-container {
+    padding: 0 50px;
+    padding-bottom: 50px;
+    background-color: #3b2c4d;
+    position: relative; /* To position the progress bar */
+}
+
+.course-slider-track {
+    display: flex;
+    overflow-x: auto;      /* Allows the script to move the scroll position */
+    white-space: nowrap;  /* Prevents cards from dropping to a new line */
+    gap: 20px;
+    padding: 20px 0;
+    
+    /* Hide the scrollbar so it looks like a clean slider */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+.course-slider-track::-webkit-scrollbar {
+    display: none; 
+}
+
+.course-card {
+	flex: 0 0 300px; /* This prevents the images from shrinking to fit the screen */
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the card without distortion */
+}
+
+/* --- Progress Bar Styling (The line beneath the cards) --- */
+.progress-bar-wrapper {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%; /* Initial width set to 0 and controlled by JS */
+    background-color: #fff; /* White fill color */
+    border-radius: 5px;
+    transition: width 0.1s ease-out; /* Smooth transition for progress update */
+}
+
+/* --- Curriculum Section Layout --- */
+.curriculum-section {
+    padding: 80px 50px;
+    background-color: #f8f8f8; /* Light gray background */
+    color: #333;
+    text-align: center;
+}
+
+.curriculum-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+}
+
+.curriculum-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a1a2e; /* Darker text for contrast */
+    flex: 1;
+}
+
+.curriculum-header .section-explore {
+    font-size: 14px;
+    font-weight: 600;
+    color: #7A3F9A; /* Purple color */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 50px;
+}
+
+.curriculum-header .intro-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    max-width: 450px;
+    flex: 1;
+}
+
+/* --- Course Grid Styling (CSS GRID) --- */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+	text-decoration: none;
+    color: inherit;
+}
+
+/* --- Course Card Styling --- */
+.course-card-detail {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+	text-decoration: none;
+    color: inherit;
+}
+
+.course-card-detail:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-image-wrapper {
+    position: relative;
+    height: 200px; /* Fixed height for image area */
+    overflow: hidden;
+}
+
+.course-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Enroll Button Overlay */
+.enroll-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #1a1a2e;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: 600;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.card-image-wrapper:hover .enroll-btn {
+    opacity: 1; /* Show on hover */
+}
+
+/* Card Content Details */
+.course-level {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 20px 0 10px 20px;
+    text-transform: uppercase;
+}
+
+/* Level Colors (Matching the video) */
+.level-beginner { 
+	background-color: #e0f7fa; 
+	color: #00bcd4; 
+}
+.level-intermediate { 
+	background-color: #fff3e0;
+	color: #ff9800; 
+}
+.level-advanced { 
+	background-color: #ede7f6;
+	color: #673ab7; 
+}
+
+
+.course-card-detail h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 20px 10px 20px;
+    color: #1a1a2e;
+}
+
+.course-description {
+    font-size: 14px;
+    color: #666;
+    margin: 0 20px 15px 20px;
+    min-height: 40px; /* Ensures consistent height */
+}
+
+.course-details {
+    font-size: 12px;
+    color: #999;
+    padding: 10px 20px 20px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+}
+
+/* View All Button */
+.view-all-btn {
+    padding: 12px 30px;
+    border: 2px solid #1a1a2e;
+    background-color: transparent;
+    color: #1a1a2e;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.view-all-btn:hover {
+    background-color: #1a1a2e;
+    color: #fff;
+}
+
+/* --- Tutorials Section Layout --- */
+.tutorials-section {
+    padding: 80px 50px;
+    background-color: #f8f8f8; 
+}
+
+.tutorials-container {
+    display: grid;
+    /* Two columns: one wider for cards (2fr), one narrower for stats (1fr) */
+    grid-template-columns: 2fr 1fr; 
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Left Column: Tutorial Cards */
+.tutorial-cards-column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* --- Tutorial Card Styling --- */
+.tutorial-card {
+    display: flex;
+    /* Use padding to create height, or define a specific height if needed */
+    padding: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    min-height: 200px; /* Ensure a good minimum height */
+}
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    max-width: 70%; /* Keep content to the left side */
+}
+
+.tutorial-card h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.tutorial-meta {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+}
+
+.tutorial-description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.watch-link {
+    display: inline-block;
+    color: #FFEB3B; /* Yellow accent color */
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.tutorial-card:hover .watch-link {
+    color: #fff;
+}
+
+/* Backgrounds (Replace with actual images via CSS background-image property) */
+
+/* Background 1: Realistic Lighting */
+.dark-theme {
+    background: 
+        /* Subtle dark overlay for text legibility */
+        linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%), 
+        /* Replace with actual image/video thumbnail for the background */
+        url('images/pic12.jpg') center right / cover no-repeat; 
+}
+
+/* Background 2: Camera Movement */
+.dark-theme-reverse {
+    background: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 60%),
+        url('images/pic13.jpg') center center / cover no-repeat;
+}
+
+/* Background 3: Particle Systems */
+.dark-theme-darker {
+    background: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%),
+        url('images/pic14.jpg') center center / cover no-repeat;
+}
+
+
+/* --- Right Column: Stats Block --- */
+.stats-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-block {
+    background-color: #1a1a2e; /* Dark theme background */
+    color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    height: 100%; /* Fill the height of the column */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}
+
+.stat-number {
+    font-size: 60px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* The play button overlay seen in the video */
+.stat-number::after {
+    content: '▶';
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 80px;
+    color: #FFEB3B; /* Yellow accent */
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.stat-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.view-all-tutorials-btn {
+    padding: 12px 30px;
+    border: none;
+    background-color: #6ba5ff; /* Blue accent */
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: fit-content; /* Only take up necessary width */
+	text-decoration: none;
+    color: inherit;
+	
+}
+
+.view-all-tutorials-btn:hover {
+    background-color: #ffffff;
+	text-decoration: none;
+    color: inherit;
+}
+
+/* --- Testimonials Section --- */
+.testimonials-section {
+    padding: 80px 50px;
+    background-color: #f0f2f5; /* Very light background for contrast */
+    text-align: center;
+}
+
+.community-header {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Testimonials Layout */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.testimonial-card {
+    background-color: #fff !important;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+	color: #1a1a1a;
+}
+
+
+.user-info img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin-right: 15px;
+    background: #eee;
+}
+
+
+.stars {
+    color: #ffc107;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+
+/* Form Styling */
+.form-section {
+    background: #fff !important;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+	color: #1a1a1a;
+}
+
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #fff;
+	
+}
+
+/* Star Rating Interaction */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.star-rating input { 
+	display: none;
+}
+
+.star-rating label {
+    font-size: 2.2rem;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+	color: #ffc107 !important;
+}
+
+.star-rating input:checked ~ label {
+    color: #ffc107 !important;
+}
+
+.char-count {
+    color: #999;
+    font-size: 0.8rem;
+    text-align: right;
+    margin-top: 5px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #000;
+    transform: translateY(-2px);
+}
+
+/* Animation for new comments */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.testimonial-card {
+    animation: slideIn 0.5s ease-out;
+}
+/* --- Insights Section Styling --- */
+.insights-section {
+    padding: 80px 50px;
+    background-color: #ffffff; /* White background */
+    text-align: center;
+}
+
+.insights-header {
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.insights-header .section-tag {
+    font-size: 14px;
+    font-weight: 600;
+    color: #7A3F9A; /* Purple color */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex-basis: 15%;
+}
+
+.insights-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a1a2e;
+    flex-basis: 35%;
+}
+
+.insights-header .header-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    flex-basis: 40%;
+}
+
+/* --- Blog Grid (3 Columns) --- */
+.blog-grid {
+    display: grid;
+    /* Create 3 columns, responsive */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+}
+
+/* --- Blog Card Styling --- */
+.blog-card {
+    text-align: left;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-image-wrapper {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.blog-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-card .tag {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Tag colors */
+.tag-blue { background-color: #2196F3; }
+.tag-purple { background-color: #9C27B0; }
+.tag-green { background-color: #4CAF50; }
+.tag-pink { background-color: #E91E63; }
+.tag-orange { background-color: #FF9800; }
+.tag-yellow { background-color: #FFEB3B; color: #333; }
+
+.blog-card h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a2e;
+    padding: 20px 20px 10px 20px;
+}
+
+.blog-excerpt {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    padding: 0 20px 15px 20px;
+    flex-grow: 1;
+}
+
+.blog-meta {
+    font-size: 12px;
+    color: #999;
+    padding: 15px 20px 20px 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 8px;
+}
+
+.read-more-btn {
+    padding: 12px 30px;
+    border: none;
+    background-color: #1a1a2e;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.read-more-btn:hover {
+    background-color: #3b2c4d;
+}
+
+
+
+/* Modal Background Overlay */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark but transparent overlay */
+    backdrop-filter: blur(8px);
+}
+
+/*  */
+.modal-content.all-access-theme {
+    background-color: #ffffff; 
+    margin: 5% auto;
+    padding: 50px 40px;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 24px;
+    color: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 15px 0 10px;
+}
+
+.modal-header p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+/* Form Styling */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.footer-container {
+    background-color: #0b0e14; /* Deep dark blue/black background */
+    color: #ffffff;
+    padding: 60px 80px 30px 80px;
+}
+
+/* FOOTER */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #1f232b; /* Subtle divider line */
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 150px;
+    margin-bottom: 30px;
+}
+
+.brand-info {
+    flex: 2; /* Give more space to the brand section */
+}
+
+.brand-info h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.brand-info p {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: #1f232b;
+    border-radius: 50%;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background-color: #334155;
+    color: #ffffff;
+}
+
+/* Link Columns */
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+.footer-column ul li a:hover {
+    color: #ffffff;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 30px auto 0;
+    font-size: 14px;
+    color: #64748b;
+}
+
+.legal-links {
+    display: flex;
+    gap: 25px;
+}
+
+.legal-links a {
+    color: #94a3b8;
+    text-decoration: none;
+}
+
+.legal-links a:hover {
+    color: #ffffff;
+}
+
+@media screen and (max-width: 1024px) {
+    nav {
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon */
+    }
+
+    .nav-links {
+        display: none; 
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(43, 30, 60, 0.95);
+        flex-direction: column; 
+        /* Ensure no extra padding is pushing items sideways */
+        padding: 20px 0; 
+        gap: 0;
+        align-items: center;
+    }
+
+    /* Show links when 'active' class is added via JS */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+       width: 100%;
+        display: flex;       
+        justify-content: center; 
+		padding: 10px 0;}
+	
+	.nav-links li a {
+        width: 100%;
+        text-align: center;
+        display: inline-block; /* Ensures the link takes up the same vertical space */
+    }
+
+    /* Adjust dropdown for mobile so it doesn't float */
+    .dropdown-content {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        display: none; /* Hide until clicked or keep simple for mobile */
+        background: rgba(0,0,0,0.2);
+        min-width: 100%;
+        box-shadow: none;
+    }
+	
+	.dropdown-menu-item {
+        padding: 0;      /* Reset the extra desktop padding */
+        display: block;  /* Stack things naturally on mobile */
+        width: 100%;
+    }
+
+    .dropdown-menu-item > a {
+        display: block;
+        padding: 10px 0; /* Match the padding of other nav links */
+    }
+
+    .dropdown-menu-item:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Hide the 'Sign In' buttons on very small screens or move them into the menu */
+    .nav-actions {
+        display: flex; 
+        gap: 5px;
+    }
+	
+	.nav-actions button {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+
+/* Tutorials Section */
+@media screen and (max-width: 900px) {
+    .tutorials-container {
+        grid-template-columns: 1fr; /* Stack the stats on top/bottom of tutorials */
+    }
+    .card-content {
+        max-width: 100%; /* Use full width on mobile */
+    }
+}
+
+/* Insights/Blog Section */
+.blog-grid {
+    display: grid;
+    /* This automatically handles columns based on available width */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+/* Curriculum Section Headers */
+@media screen and (max-width: 768px) {
+    .curriculum-header, .insights-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .curriculum-header .intro-text, .insights-header .header-description {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .course-slider-container {
+        padding: 0 15px; /* Less padding on sides for mobile */
+    }
+    .course-card {
+        flex: 0 0 260px; /* Slightly smaller cards on phones */
+        height: 300px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+.modal-content {
+    position: relative; /* Context for the absolute X button */
+}
+
+.modal {
+    -webkit-overflow-scrolling: touch;
+}
+	
+	.modal-content.all-access-theme {
+        margin: 0; /* Remove top margin */
+        width: 100%; /* Fill width */
+        height: 100%; /* Fill height to ensure user can't click "behind" it */
+        max-width: none;
+        border-radius: 0; /* Full screen look on mobile */
+        padding: 60px 20px 20px 20px; /* Extra top padding so "X" doesn't overlap text */
+    }
+    .form-section {
+        padding: 25px; /* Less padding inside the form on small screens */
+    }
+    .section-title {
+        font-size: 28px;
+    }
+    .testimonials-grid {
+        grid-template-columns: 1fr; /* One testimonial per row */
+    }
+	.auth-close-x {
+        position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 32px;
+    color: #999;
+    cursor: pointer;
+    z-index: 9999; /* Make sure it's on the very top layer */
+    padding: 15px;  /* This makes the clickable area much larger for thumbs */
+    line-height: 0.5;
+    }
+}

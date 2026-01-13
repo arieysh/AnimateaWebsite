@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texturing & Lighting - Animatea</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="texture-lighting.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    
+	 <nav>
+        <div class="logo">Animatea</div>
+		 <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown-menu-item">
+                <a href="introduction.html">Tutorial</a>
+				<div class="dropdown-content">
+                    <a href="introduction.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Introduction 3D Concepts</h5>
+                        </div>
+                    </a>
+                    <a href="modeling.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>3D Modeling</h5>
+                        </div>
+                    </a>
+                    <a href="texture-lighting.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Texturing & Lighting</h5>
+                        </div>
+                    </a>
+                    <a href="3D_animation_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Animation</h5>
+                        </div>
+                    </a>
+                    <a href="rendering_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Rendering</h5>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+         <div class="nav-actions">
+			<div id="logged-out-UI">
+            <button class="signin" id="navSignIn">Sign In</button>
+			<button class="get-started" id="navGetStarted">Get Started</button>
+        </div>
+			<div id="logged-in-UI" style="display: none; align-items: center; gap: 15px;">
+        <span id="user-display-name" style="font-weight: 600; color: #fff;"></span>
+        <button id="logout-btn" style="background: transparent; border: 1px solid #ccc; color: #fff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Log Out</button>
+    </div>
+		 </div>
+    </nav>
+	
+	<div id="authModal" class="modal">
+    <div class="modal-content all-access-theme">
+        <span class="close-btn">&times;</span>
+
+        <div id="login-container">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to access your courses.</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Log In</button>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <span id="switchToRegister">Register here</span></p>
+            </div>
+        </div>
+
+        <div id="register-container" style="display: none;">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join our community today.</p>
+            </div>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth</label>
+                    <input type="date" id="regDOB" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <span id="switchToLogin">Log In here</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="scroll-progress"></div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <header class="hero-video-section">
+        <video autoplay muted loop playsinline class="hero-video-bg">
+            <source src="video/bg_textture-lighting.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay"></div>
+        <div class="hero-content-inner">
+            <div class="hero-text-content reveal">
+                <span class="yellow" style="font-weight: 600; margin-bottom: 10px; display: block;">NEW MODULE AVAILABLE</span>
+                <h1>Texturing & Lighting</h1>
+                <p class="hero-description">Master the art of surface properties and atmospheric lighting to breathe life into your static 3D models.</p>
+                <button class="btn-primary" onclick="document.getElementById('introduction').scrollIntoView({ behavior: 'smooth' });">Start This Lesson</button>
+            </div>
+            
+            <div class="comparison-slider-wrapper reveal">
+                <div class="comparison-slider" id="sliderContainer">
+                    <img src="images/after_texturing.jpg" alt="Textured Mesh">
+                    <div class="image-overlay" id="overlay">
+                        <img src="images/before_texturing.jpg" alt="Clay Mesh">
+                    </div>
+                    <div class="label-before">Clay Mesh</div>
+                    <div class="label-after">Textured</div>
+                    <div class="swipe-handle" id="swipeHandle">
+                        <span>↔</span>
+                    </div>
+                </div>
+                <input type="range" min="0" max="100" value="50" class="swipe-input" id="swipeInput">
+            </div>
+        </div>
+    </header>
+
+    <section id="introduction">
+        <div class="section-header reveal">
+            <div>
+                <span class="section-tag">Concepts</span>
+                <h2>Introduction to Texture</h2>
+            </div>
+        </div>
+        <div class="intro-grid">
+            <div class="intro-card reveal">
+                <button class="intro-title-btn" onclick="toggleDetails(this)">
+                    <span>WHAT IS TEXTURE?</span>
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="intro-details">
+                    <div class="content-wrapper">
+                        <p>Texture involves projecting or wrapping 2D images onto 3D objects to efficiently simulate surface details and attributes, such as reflectivity and roughness, without increasing the geometric polygon count, whereas lighting is the process that reveals the 3D world and establishes the scene's mood.</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/IoIwVWmdqL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intro-card reveal" style="transition-delay: 0.1s;">
+                <button class="intro-title-btn" onclick="toggleDetails(this)">
+                    <span>WHAT ARE TEXTURE USED FOR?</span>
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="intro-details">
+                    <div class="content-wrapper">
+                        <p>Textures are used in 3D rendering as efficient shortcuts to simulate complex surface details and modulate attributes such as reflectivity, transparency, and roughness, allowing for the creation of rich visual effects without the computational cost of adding extra polygons.</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/s8N00rjil_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intro-card reveal" style="transition-delay: 0.2s;">
+                <button class="intro-title-btn" onclick="toggleDetails(this)">
+                    <span>WHAT IS THE PURPOSE OF LIGHTING?</span>
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="intro-details">
+                    <div class="content-wrapper">
+                        <p>Lighting serves the fundamental purpose of revealing the 3D world by making objects visible and defining their depth and shape through the strategic placement of highlights and shadows. Beyond basic visibility, it establishes the emotional tone or mood of a scene.</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/ElMM3u2MO5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="texture-maps">
+        <div class="section-header reveal">
+            <div>
+                <span class="section-tag">Fundamentals</span>
+                <h2>Texture Map Explained</h2>
+            </div>
+            <p style="max-width: 400px; color: #888; text-align: right;">Essential surfacing components. Click images to view full screen.</p>
+        </div>
+
+        <div class="texture-slider-container reveal">
+            <div class="texture-slider-track" id="textureSlider">
+                <div class="texture-card">
+                    <div class="texture-img-wrapper" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="images/color map.jpg" alt="Color Map">
+                    </div>
+                    <div class="texture-card-body">
+                        <h3>Color/Pattern Maps</h3>
+                        <p>Flat simulations that act like "wallpaper," providing surface details that look textured but remain smooth to the touch.</p>
+                    </div>
+                </div>
+                <div class="texture-card">
+                    <div class="texture-img-wrapper" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="images/transparency map.jpeg" alt="Transparency Map">
+                    </div>
+                    <div class="texture-card-body">
+                        <h3>Transparency Maps</h3>
+                        <p>Grayscale images determining opaque or transparent parts. Using Alpha channels to "cut holes" without extra geometry.</p>
+                    </div>
+                </div>
+                <div class="texture-card">
+                    <div class="texture-img-wrapper" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="images/bump-map.webp" alt="Bump Map">
+                    </div>
+                    <div class="texture-card-body">
+                        <h3>Bump Maps</h3>
+                        <p>Simulates wrinkles by disturbing the surface normal, creating a relief illusion through lighting.</p>
+                    </div>
+                </div>
+                <div class="texture-card">
+                    <div class="texture-img-wrapper" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="images/displacement map.webp" alt="Displacement Map">
+                    </div>
+                    <div class="texture-card-body">
+                        <h3>Displacement Maps</h3>
+                        <p>Unlike bump maps, these actually modify the geometry. Used for 3D terrain where elevations are coded in grayscale.</p>
+                    </div>
+                </div>
+                <div class="texture-card">
+                    <div class="texture-img-wrapper" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="images/spherical map.png" alt="Spherical Map">
+                    </div>
+                    <div class="texture-card-body">
+                        <h3>Spherical Maps</h3>
+                        <p>A flattened environment image mapped inside a virtual sphere for realistic reflections.</p>
+                    </div>
+                </div>
+                <div class="texture-card">
+                    <div class="texture-img-wrapper" onclick="openLightbox(this.querySelector('img').src)">
+                        <img src="images/cubical map.jpg" alt="Cubical Map">
+                    </div>
+                    <div class="texture-card-body">
+                        <h3>Cubical (Box) Maps</h3>
+                        <p>A six-panel environment view mapped onto a virtual cube for efficient reflections.</p>
+                    </div>
+                </div>
+                <div class="texture-card">
+                    <div class="texture-img-wrapper"><img src="images/color map.jpg" alt="Color Map"></div>
+                    <div class="texture-card-body"><h3>Color/Pattern Maps</h3><p>Flat simulations that act like "wallpaper."</p></div>
+                </div>
+                <div class="texture-card">
+                    <div class="texture-img-wrapper"><img src="images/transparency map.jpeg" alt="Transparency Map"></div>
+                    <div class="texture-card-body"><h3>Transparency Maps</h3><p>Grayscale images for opacity.</p></div>
+                </div>
+            </div>
+            
+            <div class="progress-bar-wrapper" style="height: 6px; background: rgba(255,255,255,0.05); margin-top: 20px; border-radius: 3px;">
+                <div id="texture-progress-fill"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lighting-technique" style="background: rgba(255,255,255,0.01);">
+        <div class="section-header reveal">
+            <div>
+                <span class="section-tag">Cinematography</span>
+                <h2>3-Point Lighting Technique</h2>
+            </div>
+            <p style="max-width: 400px; color: #888; text-align: right;">Master the industry standard setup used for characters.</p>
+        </div>
+
+        <div class="lighting-main-container">
+            <div class="lighting-video-side reveal">
+                <div class="video-container" style="border: 2px solid rgba(107, 165, 255, 0.2);">
+                    <iframe src="https://www.youtube.com/embed/aafyp5g1CjI" id="mainVideo" title="Lighting for Beginners" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <div class="chapters-container">
+                    <div class="chapters-header">
+                        <span>Video Chapters</span>
+                        <span style="font-size: 10px; color: #888;">Scroll for more</span>
+                    </div>
+                    <div class="chapters-list">
+                        <div class="chapter-item" onclick="jumpTo(0)"><span>Intro</span><span class="chapter-time">0:00</span></div>
+                        <div class="chapter-item" onclick="jumpTo(2144)"><span>Three Point Lighting Setup</span><span class="chapter-time">35:44</span></div>
+                        <div class="chapter-item" onclick="jumpTo(2637)"><span>Closing</span><span class="chapter-time">43:57</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lighting-info-side">
+                <div class="lighting-tutorial-card reveal" style="transition-delay: 0.1s;">
+                    <h3><span class="light-number">1</span> Key Light</h3>
+                    <p>The primary source of illumination. Positioned to one side of the subject at a 45° angle.</p>
+                    <div class="timestamp-badge" onclick="jumpTo(2155)"><span>▶</span> Watch at 35:55</div>
+                </div>
+                <div class="lighting-tutorial-card reveal" style="transition-delay: 0.2s; border-left-color: #FFEB3B;">
+                    <h3><span class="light-number" style="background: #FFEB3B;">2</span> Fill Light</h3>
+                    <p>Placed on the opposite side of the Key light to soften harsh shadows.</p>
+                    <div class="timestamp-badge" onclick="jumpTo(2235)"><span>▶</span> Watch at 37:15</div>
+                </div>
+                <div class="lighting-tutorial-card reveal" style="transition-delay: 0.3s; border-left-color: #7A3F9A;">
+                    <h3><span class="light-number" style="background: #7A3F9A; color: #fff;">3</span> Rim / Back Light</h3>
+                    <p>Located behind the subject to separate them from the background.</p>
+                    <div class="timestamp-badge" onclick="jumpTo(2330)"><span>▶</span> Watch at 38:50</div>
+                </div>
+            </div>
+        </div>
+    </section>
+	<footer class="footer-container">
+    <div class="footer-content">
+        <div class="footer-column brand-info">
+            <h2>3D Concepts</h2>
+            <p>Breaking down barriers to learning<br>3D design and animation.</p>
+            <div class="social-icons">
+				<a href="https://wa.me/0175545539" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/arieysh" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+               <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Learning</h3>
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="modeling.html">3D Modeling</a></li>
+                <li><a href="texture-lighting.html">Texturing & Lighting</a></li>
+                <li><a href="3D_animation_tutorial.html">Animation</a></li>
+                <li><a href="rendering_tutorial.html">Rendering</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Software</h3>
+            <ul>
+                <li><a href="https://www.blender.org/">Blender</a></li>
+                <li><a href="https://www.foundry.com/ja/products/modo/new-releases">Modo</a></li>
+                <li><a href="https://unity.com/">Unity</a></li>
+                <li><a href="https://www.autodesk.com/asean/products/3ds-max/free-trial">3ds Max</a></li>
+                <li><a href="https://www.sidefx.com/download/">Houdini</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Team</a></li>
+                <li><a href="about.html">FAQ</a></li>
+                <li><a href="about.html">Support</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 3D Concepts. All rights reserved.</p>
+        <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Animation 3D Builder</a>
+        </div>
+    </div>
+</footer>
+
+    <script>
+    // --- 1. ACCORDION LOGIC ---
+    function toggleDetails(btn) { 
+        btn.parentElement.classList.toggle('expanded'); 
+    }
+
+    // --- 2. LIGHTBOX LOGIC ---
+    function openLightbox(src) {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightboxImg');
+        lbImg.src = src;
+        lb.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // --- 3. YOUTUBE JUMP LOGIC ---
+    function jumpTo(seconds) {
+        const iframe = document.getElementById('mainVideo');
+        iframe.src = `https://www.youtube.com/embed/aafyp5g1CjI?start=${seconds}&autoplay=1`;
+        document.getElementById('lighting-technique').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // --- 4. HERO COMPARISON SLIDER ---
+    const swipeInput = document.getElementById('swipeInput');
+    const overlay = document.getElementById('overlay');
+    const handle = document.getElementById('swipeHandle');
+    
+    if (swipeInput && overlay && handle) {
+        swipeInput.addEventListener('input', () => {
+            const val = swipeInput.value;
+            overlay.style.width = val + "%";
+            handle.style.left = val + "%";
+        });
+    }
+
+    // --- 5. AUTO-PROGRESS BAR LOGIC (Sync with CSS Animation) ---
+    const textureProgress = document.getElementById('texture-progress-fill');
+    if (textureProgress) {
+        let progress = 0;
+        function animateProgressBar() {
+            progress += 0.0416; // Approx sync for 40s loop (100 / 40 / 60fps)
+            if (progress > 100) progress = 0;
+            textureProgress.style.width = progress + '%';
+            requestAnimationFrame(animateProgressBar);
+        }
+        animateProgressBar();
+    }
+
+    // --- 6. PAGE GLOBAL SCROLL PROGRESS ---
+    window.onscroll = function() {
+        let winScroll = document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        const progress = document.getElementById("scroll-progress");
+        if (progress) progress.style.width = scrolled + "%";
+    };
+
+    // --- 7. REVEAL ANIMATIONS ---
+    const revealCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    };
+    const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Close Lightbox on backdrop click
+    window.onclick = function(event) {
+        const lb = document.getElementById('lightbox');
+        if (event.target == lb) closeLightbox();
+    }
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

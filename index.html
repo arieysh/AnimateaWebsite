@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animatea - Master 3D Animation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+     <nav>
+        <div class="logo">Animatea</div>
+		 
+		 <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+		 
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown-menu-item">
+                <a href="introduction.html">Tutorial</a>
+				<div class="dropdown-content">
+                    <a href="introduction.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Introduction 3D Concepts</h5>
+                        </div>
+                    </a>
+                    <a href="modeling.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>3D Modeling</h5>
+                        </div>
+                    </a>
+                    <a href="texture-lighting.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Texturing & Lighting</h5>
+                        </div>
+                    </a>
+                    <a href="3D_animation_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Animation</h5>
+                        </div>
+                    </a>
+                    <a href="rendering_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Rendering</h5>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+		
+        <div class="nav-actions">
+			<div id="logged-out-UI">
+            <button class="signin" id="navSignIn">Sign In</button>
+			<button class="get-started" id="navGetStarted">Get Started</button>
+        </div>
+			<div id="logged-in-UI" style="display: none; align-items: center; gap: 15px;">
+        <span id="user-display-name" style="font-weight: 600; color: #fff;"></span>
+        <button id="logout-btn" style="background: transparent; border: 1px solid #ccc; color: #fff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Log Out</button>
+    </div>
+		 </div>
+    </nav>
+	
+	<div id="authModal" class="modal">
+    <div class="modal-content all-access-theme">
+        <span class="close-btn">&times;</span>
+
+        <div id="login-container">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to access your courses.</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Log In</button>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <span id="switchToRegister">Register here</span></p>
+            </div>
+        </div>
+
+        <div id="register-container" style="display: none;">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join our community today.</p>
+            </div>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth</label>
+                    <input type="date" id="regDOB" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <span id="switchToLogin">Log In here</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+	
+
+    <header class="hero-section">
+		<video autoplay muted loop id="video-background">
+            <source src="video/background1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+		<div class="hero-content-wrapper">
+        <div class="hero-content">
+            <p class="new-course">✨ New 3D Course Available</p>
+            <h1>Master 3D Animation</h1>
+            <p class="description">Transform your creative vision into stunning 3D animations. Learn from industry experts and join a thriving community of 3D artists pushing the boundaries of digital storytelling and visual effects.</p>
+            <div class="hero-buttons">
+				<a href="introduction.html" class="btn-primary">Start Learning</a>
+                <button class="btn-secondary">Browse Courses</button>
+            </div>
+        </div>
+			</div>
+    </header>
+
+    <section class="course-slider-container">
+        <div class="course-slider-track">
+            <div class="course-card">
+                <img src="images/pic1.jpg" alt="Cartoon Character" class="card-image"> 
+            </div>
+            <div class="course-card">
+                <img src="images/pic2.jpg" alt="Modern Architecture" class="card-image">
+            </div>
+            <div class="course-card">
+                <img src="images/pic3.jpg" alt="Product Photography" class="card-image">
+            </div>
+            <div class="course-card">
+                <img src="images/pic4.jpg" alt="Pink Ball" class="card-image">
+            </div>
+            <div class="course-card">
+                <img src="images/pic5.jpg" alt="Green Dragon" class="card-image">
+            </div>
+			
+			 <div class="course-card">
+                <img src="images/pic1.jpg" alt="Cartoon Character" class="card-image"> 
+            </div>
+            <div class="course-card">
+                <img src="images/pic2.jpg" alt="Modern Architecture" class="card-image">
+            </div>
+            <div class="course-card">
+                <img src="images/pic3.jpg" alt="Product Photography" class="card-image">
+            </div>
+            <div class="course-card">
+                <img src="images/pic4.jpg" alt="Pink Ball" class="card-image">
+            </div>
+            <div class="course-card">
+                <img src="images/pic5.jpg" alt="Green Dragon" class="card-image">
+            </div>
+			
+            </div>
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+    </section>
+	
+	<section class="curriculum-section">
+        <div class="curriculum-header">
+            <p class="section-explore">EXPLORE</p>
+            <h2>Master the Core Principles <br> of 3D Animation</h2>
+            <p class="intro-text">
+				Our comprehensive <b>3D animation courses</b> are crafted by students 
+				professionals for educational purposes, helping learners build <b>3D modeling techniques</b> and 
+				<b>animation skills</b> at your own pace.
+            </p>
+        </div>
+
+        <div class="course-grid">
+            
+            <a href="introduction.html" class="course-card-detail">
+                <div class="card-image-wrapper">
+                    <img src="images/pic6.jpg" alt="Person working on 3D skeleton model" class="course-image">
+                    <button class="enroll-btn">Explore Now</button>
+                </div>
+                <p class="course-level level-beginner">Beginner</p>
+                <h3>3D Animation Fundamentals</h3>
+                <p class="course-description">
+                    Discover what 3D animation is, how it works, and where it is used in films, games, design, and virtual reality. This section builds a strong foundation for beginners starting their 3D journey.
+                </p>
+                <div class="course-details">
+                    <span>📅 12 Weeks</span>
+                    <span>•</span>
+                    <span>🎓 Beginner</span>
+            </div>
+			</a>
+
+				<a href="modeling.html" class="course-card-detail">
+                <div class="card-image-wrapper">
+                    <img src="images/pic7.jpg" alt="3D Skeleton Rigging" class="course-image">
+                    <button class="enroll-btn">Explore Now</button>
+                </div>
+                <p class="course-level level-advanced">Beginner</p>
+                <h3>3D Modeling</h3>
+                <p class="course-description">
+                    Learn how 3D objects are created using basic shapes, polygons, and modeling tools. This section introduces essential modeling techniques used to build characters, objects, and environments.
+                </p>
+                <div class="course-details">
+                    <span>📅 8 Weeks</span>
+                    <span>•</span>
+                    <span>🎓 Advanced</span>
+                </div>
+				</a>
+
+            <a href="texture-lighting.html" class="course-card-detail">
+                <div class="card-image-wrapper">
+                    <img src="images/pic8.jpg" alt="Blender 3D living room render" class="course-image">
+                    <button class="enroll-btn">Explore Now</button>
+                </div>
+                <p class="course-level level-intermediate">Texturing & Lighting</p>
+                <h3>Blender Complete Mastery</h3>
+                <p class="course-description">
+                    Understand how colors, materials, and textures are applied to 3D models, and how lighting enhances realism. Learn how light and shadows affect the final appearance of a 3D scene.
+                </p>
+                <div class="course-details">
+                    <span>📅 10 Weeks</span>
+                    <span>•</span>
+                    <span>🎓 Intermediate</span>
+                </div>
+			</a>
+
+           <a href="3D_animation_tutorial.html" class="course-card-detail">
+                <div class="card-image-wrapper">
+                    <img src="images/pic9.jpg" alt="White 3D Golf ball" class="course-image">
+                    <button class="enroll-btn">Explore Now</button>
+                </div>
+                <p class="course-level level-beginner">Intermediate</p>
+                <h3>Animation</h3>
+                <p class="course-description">
+                    Learn how to bring 3D models to life through movement. This section explains key animation principles such as keyframes, timing, and motion used in characters and objects.
+                </p>
+                <div class="course-details">
+                    <span>📅 10 Weeks</span>
+                    <span>•</span>
+                    <span>🎓 Beginner</span>
+                </div>
+			</a>
+
+            <a href="rendering_tutorial.html" class="course-card-detail">
+                <div class="card-image-wrapper">
+                    <img src="images/pic10.jpg" alt="Various 3D rendered spheres" class="course-image">
+                    <button class="enroll-btn">Explore Now</button>
+                </div>
+                <p class="course-level level-intermediate">Intermediate</p>
+                <h3>Rendering</h3>
+                <p class="course-description">
+                    Discover how final images or videos are generated from 3D scenes. Learn how rendering works, including camera setup, lighting calculation, and output quality.
+                </p>
+                <div class="course-details">
+                    <span>📅 8 Weeks</span>
+                    <span>•</span>
+                    <span>🎓 Intermediate</span>
+                </div>
+			</a>
+
+            <a href="projects.html" class="course-card-detail">
+                <div class="card-image-wrapper">
+                    <img src="images/pic11.jpg" alt="Pink floating spheres" class="course-image">
+                    <button class="enroll-btn">Explore Now</button>
+                </div>
+                <p class="course-level level-advanced">Advanced</p>
+                <h3>Student Projects</h3>
+                <p class="course-description">
+                    Explore senior student 3D projects that demonstrate modeling, texturing, animation, and rendering techniques applied in real project workflows.
+                </p>
+                <div class="course-details">
+                    <span>📅 14 Weeks</span>
+                    <span>•</span>
+                    <span>🎓 Advanced</span>
+                </div>
+			</a>
+
+        </div>
+    </section>
+	
+	<section class="tutorials-section">
+        <div class="tutorials-container">
+            
+            <div class="tutorial-cards-column">
+
+                <a href="https://youtu.be/XcJyW5iBKlU?si=ghZ6v5Ste6Qap7d7" class="tutorial-card dark-theme">
+                    <div class="card-content">
+                        <h4>Creating Realistic 3D Lighting</h4>
+                        <p class="tutorial-meta">🕛 6 min</p>
+                        <p class="tutorial-description">
+                            Learn professional lighting techniques to bring realism and depth to your 3D scenes.
+                        </p>
+                        <span class="watch-link">Watch Tutorial →</span>
+                    </div>
+                </a>
+
+                <a href="https://youtu.be/a7qyW1G350g?si=wL8UGQb9B1FCHQbL" class="tutorial-card dark-theme-reverse">
+                    <div class="card-content">
+                        <h4>Mastering 3D Camera Movement</h4>
+                        <p class="tutorial-meta">🕛 9 min</p>
+                        <p class="tutorial-description">
+                            Understand cinematic camera techniques and create compelling 3D animations with professional camera work.
+                        </p>
+                        <span class="watch-link">Watch Tutorial →</span>
+                    </div>
+                </a>
+
+                <a href="https://youtu.be/DIqsskq9j9M?si=N4Hfjw-C99FT-Ezf" class="tutorial-card dark-theme-darker">
+                    <div class="card-content">
+                        <h4>Advanced 3D Particle Systems</h4>
+                        <p class="tutorial-meta">🕛 17 min</p>
+                        <p class="tutorial-description">
+                            Master particle systems to create stunning visual effects and dynamic simulations in your 3D projects.
+                        </p>
+                        <span class="watch-link">Watch Tutorial →</span>
+                    </div>
+                </a>
+                
+            </div>
+
+            <div class="stats-column">
+                <div class="stats-block">
+                    <div class="stat-number">1000+</div>
+                    <p class="stat-text">
+                        Free 3D animation tutorials covering everything from basic <b>modeling principles</b> to <b>advanced rendering techniques</b>.
+                    </p>
+                    <button class="view-all-tutorials-btn">
+						<a href="https://www.artstation.com/marketplace/game-dev/tutorials/animation?page=2">View All Tutorials</a></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+	
+	<section class="testimonials-section">
+    <div class="community-header">
+        <h2 class="section-title">Loved by 3D Learners</h2>
+        <p class="section-subtitle">
+            Join thousands of successful 3D learners who boosted their skills 
+            through our animation courses and supportive creative community.
+        </p>
+    </div>
+
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="user-info">
+                <img src="https://i.pravatar.cc/150?u=james" alt="James Chen">
+                <div class="user-details">
+                    <h4>Nafis Wazif</h4>
+                    <span>Classmate & Project Partner</span>
+                </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p class="comment-text">Working on group projects together has been amazing! Great collaboration skills and brings innovative ideas to the table.</p>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="user-info">
+                <img src="https://i.pravatar.cc/150?u=emily" alt="Emily Rodriguez">
+                <div class="user-details">
+                    <h4>Farahananum</h4>
+                    <span>Internship Supervisor</span>
+                </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p class="comment-text">Impressed by the quality of work during the internship. Quick learner and delivered projects on time.</p>
+        </div>
+		
+		<div class="testimonial-card">
+            <div class="user-info">
+                <img src="https://i.pravatar.cc/150?u=emily" alt="Emily Rodriguez">
+                <div class="user-details">
+                    <h4>Farahananum</h4>
+                    <span>Internship Supervisor</span>
+                </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p class="comment-text">Impressed by the quality of work during the internship. Quick learner and delivered projects on time.</p>
+        </div>
+		
+		<div class="testimonial-card">
+            <div class="user-info">
+                <img src="https://i.pravatar.cc/150?u=emily" alt="Emily Rodriguez">
+                <div class="user-details">
+                    <h4>Farahananum</h4>
+                    <span>Internship Supervisor</span>
+                </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p class="comment-text">Impressed by the quality of work during the internship. Quick learner and delivered projects on time.</p>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <h2>Share Your Experience</h2>
+        <form id="commentForm">
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="your.email@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="label-bold">Rating</label>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Your Comment</label>
+                <textarea rows="4" placeholder="How was your experience?" maxlength="500"></textarea>
+                <div class="char-count" style="font-size: 12px; color: #8a8a9e; text-align: right; margin-top: 5px;">0/500 characters</div>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Your Comment</button>
+        </form>
+    </div>
+</section>
+	
+	<section class="insights-section">
+        <div class="insights-header">
+            <p class="section-tag">INSIGHTS</p>
+            <h2>Latest from Our Blog</h2>
+            <p class="header-description">
+				Stay updated with the <b>latest 3D animation trends</b>, modeling tutorials, 
+				and <b>industry insights</b> from our expert team and community contributors.
+            </p>
+        </div>
+
+        <div class="blog-grid">
+            
+            <a href="#" class="blog-card">
+                <div class="blog-image-wrapper">
+                    <img src="images/pic15.jpg" alt="Future of 3D animation tech" class="blog-image">
+                    <span class="tag tag-blue">Industry Trends</span>
+                </div>
+                <h3>The Future of 3D Animation in 2025</h3>
+                <p class="blog-excerpt">
+                    Explore the emerging trends shaping the 3D animation industry, from real-time rendering to AI-assisted modeling that are revolutionizing digital content creation.
+                </p>
+                <div class="blog-meta">
+                    <span>Sarah Mitchell</span>
+                    <span>•</span>
+                    <span>Jan 15, 2025</span>
+                    <span>•</span>
+                    <span>8 min read</span>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <div class="blog-image-wrapper">
+                    <img src="images/pic16.jpg" alt="3D skull model" class="blog-image">
+                    <span class="tag tag-purple">Tutorial</span>
+                </div>
+                <h3>Mastering Blender: Pro Tips</h3>
+                <p class="blog-excerpt">
+                    Unlock advanced Blender techniques used by industry professionals to create stunning 3D animations and renders that stand out and captivate audiences.
+                </p>
+                <div class="blog-meta">
+                    <span>Michael Torres</span>
+                    <span>•</span>
+                    <span>Jan 12, 2025</span>
+                    <span>•</span>
+                    <span>12 min read</span>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <div class="blog-image-wrapper">
+                    <img src="images/pic17.jpg" alt="3D Studio workflow" class="blog-image">
+                    <span class="tag tag-green">Case Study</span>
+                </div>
+                <h3>Behind the Scenes: 3D Studio Workflow</h3>
+                <p class="blog-excerpt">
+                    Get an exclusive look at how top 3D animation studios organize their projects, collaborate with teams, and deliver exceptional results on tight deadlines.
+                </p>
+                <div class="blog-meta">
+                    <span>Emma Rodriguez</span>
+                    <span>•</span>
+                    <span>Jan 10, 2025</span>
+                    <span>•</span>
+                    <span>10 min read</span>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <div class="blog-image-wrapper">
+                    <img src="images/pic18.jpg" alt="Studio lighting setup" class="blog-image">
+                    <span class="tag tag-pink">Design Principles</span>
+                </div>
+                <h3>Lighting Theory for 3D Artists</h3>
+                <p class="blog-excerpt">
+                    Master the art of lighting in 3D scenes and learn how to create realistic illumination that enhances storytelling and evokes powerful emotional responses.
+                </p>
+                <div class="blog-meta">
+                    <span>David Kim</span>
+                    <span>•</span>
+                    <span>Jan 8, 2025</span>
+                    <span>•</span>
+                    <span>7 min read</span>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <div class="blog-image-wrapper">
+                    <img src="images/pic19.jpg" alt="Laptop and tablet displaying 3D work" class="blog-image">
+                    <span class="tag tag-orange">Career Advice</span>
+                </div>
+                <h3>Building Your 3D Animation Portfolio</h3>
+                <p class="blog-excerpt">
+                    Learn how to curate and present your 3D work effectively to attract clients and land your dream job in the competitive 3D animation industry.
+                </p>
+                <div class="blog-meta">
+                    <span>Lisa Chen</span>
+                    <span>•</span>
+                    <span>Jan 5, 2025</span>
+                    <span>•</span>
+                    <span>9 min read</span>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card">
+                <div class="blog-image-wrapper">
+                    <img src="images/pic20.jpg" alt="3D character chasing a ball" class="blog-image">
+                    <span class="tag tag-yellow">Fundamentals</span>
+                </div>
+                <h3>3D Animation Principles That Never Change</h3>
+                <p class="blog-excerpt">
+                    Revisit the timeless principles of animation that form the foundation of great 3D work, from timing and spacing to weight and momentum in 3D space.
+                </p>
+                <div class="blog-meta">
+                    <span>James Wilson</span>
+                    <span>•</span>
+                    <span>Jan 3, 2025</span>
+                    <span>•</span>
+                    <span>11 min read</span>
+                </div>
+            </a>
+
+        </div>
+		
+    </section>
+	
+	<footer class="footer-container">
+    <div class="footer-content">
+        <div class="footer-column brand-info">
+            <h2>3D Concepts</h2>
+            <p>Breaking down barriers to learning<br>3D design and animation.</p>
+            <div class="social-icons">
+				<a href="https://wa.me/0175545539" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/arieysh" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Learning</h3>
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="modeling.html">3D Modeling</a></li>
+                <li><a href="texture-lighting.html">Texturing & Lighting</a></li>
+                <li><a href="3D_animation_tutorial.html">Animation</a></li>
+                <li><a href="rendering_tutorial.html">Rendering</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Software</h3>
+            <ul>
+                <li><a href="https://www.blender.org/">Blender</a></li>
+                <li><a href="https://www.foundry.com/ja/products/modo/new-releases">Modo</a></li>
+                <li><a href="https://unity.com/">Unity</a></li>
+                <li><a href="https://www.autodesk.com/asean/products/3ds-max/free-trial">3ds Max</a></li>
+                <li><a href="https://www.sidefx.com/download/">Houdini</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Team</a></li>
+                <li><a href="about.html">FAQ</a></li>
+                <li><a href="about.html">Support</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 3D Concepts. All rights reserved.</p>
+        <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Animation 3D Builder</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+	
+<script>
+document.getElementById('commentForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevents the page from reloading
+
+    // 1. Get the values from the form inputs
+    const name = this.querySelector('input[type="text"]').value;
+    const comment = this.querySelector('textarea').value;
+    const rating = this.querySelector('input[name="rating"]:checked')?.value || 0;
+    
+    // Create stars string based on rating
+    let starString = "";
+    for(let i=0; i<5; i++) {
+        starString += i < rating ? "★" : "☆";
+    }
+
+    // 2. Create the HTML structure for the new comment
+    const newCard = document.createElement('div');
+    newCard.className = 'testimonial-card';
+    newCard.innerHTML = `
+        <div class="user-info">
+            <img src="https://i.pravatar.cc/150?u=${name}" alt="${name}">
+            <div class="user-details">
+                <h4>${name}</h4>
+                <span>New Contributor</span>
+            </div>
+        </div>
+        <div class="stars" style="color: #ffc107;">${starString}</div>
+        <p class="comment-text">${comment}</p>
+    `;
+
+    // 3. Add the new card to the top of the grid
+    const grid = document.querySelector('.testimonials-grid');
+    grid.prepend(newCard);
+
+    // 4. Reset the form
+    this.reset();
+    alert("Thank you for your comment!");
+});
+</script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Render Your Final Scene - Animatea</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="rendering.css">
+</head>
+<body class="tutorial-page-body">
+
+    <div class="tut-modal-overlay" id="infoModal">
+        <div class="tut-modal-card">
+            <h3 class="modal-title" id="modalTitle">Did You Know?</h3>
+            <p class="modal-body" id="modalBody">This is a dynamic explanation.</p>
+            <button class="modal-close" onclick="closeModal()">Got it</button>
+        </div>
+    </div>
+
+    <div class="glossary-container">
+        <div class="glossary-title">Quick Glossary</div>
+        <ul class="glossary-list">
+            <li class="glossary-item">Rasterization</li>
+            <li class="glossary-item">Ray Tracing</li>
+        </ul>
+    </div>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+     <nav>
+        <div class="logo">Animatea</div>
+		 <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown-menu-item">
+                <a href="introduction.html">Tutorial</a>
+				<div class="dropdown-content">
+                    <a href="introduction.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Introduction 3D Concepts</h5>
+                        </div>
+                    </a>
+                    <a href="modeling.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>3D Modeling</h5>
+                        </div>
+                    </a>
+                    <a href="texture-lighting.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Texturing & Lighting</h5>
+                        </div>
+                    </a>
+                    <a href="3D_animation_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Animation</h5>
+                        </div>
+                    </a>
+                    <a href="rendering_tutorial.html" class="dropdown-link">
+                        <div class="link-details">
+                            <h5>Rendering</h5>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+         <div class="nav-actions">
+			<div id="logged-out-UI">
+            <button class="signin" id="navSignIn">Sign In</button>
+			<button class="get-started" id="navGetStarted">Get Started</button>
+        </div>
+			<div id="logged-in-UI" style="display: none; align-items: center; gap: 15px;">
+        <span id="user-display-name" style="font-weight: 600; color: #fff;"></span>
+        <button id="logout-btn" style="background: transparent; border: 1px solid #ccc; color: #fff; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 12px;">Log Out</button>
+    </div>
+		 </div>
+    </nav>
+	
+	<div id="authModal" class="modal">
+    <div class="modal-content all-access-theme">
+        <span class="close-btn">&times;</span>
+
+        <div id="login-container">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to access your courses.</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Log In</button>
+            </form>
+            <div class="modal-footer">
+                <p>Don't have an account? <span id="switchToRegister">Register here</span></p>
+            </div>
+        </div>
+
+        <div id="register-container" style="display: none;">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join our community today.</p>
+            </div>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="regName" placeholder="John Doe" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="name@company.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth</label>
+                    <input type="date" id="regDOB" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-continue">Create Account</button>
+            </form>
+            <div class="modal-footer">
+                <p>Already have an account? <span id="switchToLogin">Log In here</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <header class="tutorial-hero">
+        <video autoplay muted loop playsinline class="tut-bg-video">
+            <source src="video/bg_render.mp4" type="video/mp4">
+        </video>
+        <div class="tut-hero-content">
+            <span class="subpage-tag">Beginner Course</span>
+            <h1>Render Your Final Scene</h1>
+            <p>A comprehensive guide to rendering concepts, lighting techniques, and export workflows.</p>
+        </div>
+    </header>
+
+    <main class="tut-main-container">
+
+        <section class="tutorial-section">
+            <div class="section-header">
+                <h2>1. The Rendering Pipeline</h2>
+                <p>From 3D Geometry to 2D Image</p>
+            </div>
+
+            <img src="images/rendering_pipeline.png" alt="3D Software Interface showing wireframes" class="tutorial-img">
+
+            <div class="content-block">
+                <h3>What is Rendering?</h3>
+                <p>Rendering is the process of generating an image from a model or scene file using computer programs. This scene file contains geometry, viewpoint, texture, lighting, and shading information.</p>
+                
+                <div class="highlight-box">
+                    👉 Model + Materials + Lights + Camera = Final Image
+                </div>
+
+                <p style="margin-top: 1.5rem;">There are two primary approaches (click to highlight):</p>
+                <div class="concept-grid">
+                    <div class="concept-card" onclick="highlightCard(this)">
+                        <h4>Rasterization</h4>
+                        <p>Loops through polygons to determine visibility and color. This is the standard for real-time applications like video games <button class="info-btn" onclick="openModal('Rasterization', 'Fast but less realistic. It draws shapes on screen rather than simulating light.')">?</button>.</p>
+                    </div>
+                    <div class="concept-card" onclick="highlightCard(this)">
+                        <h4>Ray Tracing</h4>
+                        <p>Loops through pixels to determine which object is visible by simulating light rays. Produces high realism but is computationally expensive <button class="info-btn" onclick="openModal('Ray Tracing', 'The Holy Grail of rendering. It simulates actual physics of light.')">?</button>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Advanced Techniques</h3>
+                <p>Modern rendering often combines several advanced techniques to achieve photorealism:</p>
+                <ul>
+                    <li><strong>Global Illumination (GI):</strong> Calculates both direct illumination (from lights) and indirect illumination (bounces).</li>
+                    <li><strong>Radiosity:</strong> A form of GI focusing on diffuse interreflection. Excellent for soft shadows and "color bleeding".</li>
+                    <li><strong>Image-Based Lighting (IBL):</strong> Uses High-Dynamic-Range (HDR) images of the real world to illuminate synthetic objects.</li>
+                    <li><strong>Photon Mapping:</strong> Simulates complex light paths, including caustics (focused light through glass).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="tutorial-section">
+            <div class="section-header">
+                <h2>2. Lighting the Scene</h2>
+                <p>Setting the Mood and Revealing Depth</p>
+            </div>
+
+            <img src="images/lighting_scene.webp" alt="3D Object Lighting Example" class="tutorial-img">
+
+            <div class="content-block">
+                <h3>Types of Light Sources</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Light Type</th>
+                            <th>Description</th>
+                            <th>Best Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Point Light (Omni)</td>
+                            <td>Radiates light in all directions from a single point.</td>
+                            <td>Light bulbs, candles, general fill.</td>
+                        </tr>
+                        <tr>
+                            <td>Directional</td>
+                            <td>Parallel rays from a specific direction (infinite distance).</td>
+                            <td>Sunlight or moonlight.</td>
+                        </tr>
+                        <tr>
+                            <td>Spotlight</td>
+                            <td>Shines in a specific direction within a cone shape.</td>
+                            <td>Flashlights, stage lights, headlights.</td>
+                        </tr>
+                        <tr>
+                            <td>Area Light</td>
+                            <td>Emits light from a specific boundary shape/size.</td>
+                            <td>Soft studio lighting.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content-block">
+                <h3>Interactive Light Lab</h3>
+                <p>Visualize how different light sources affect a 3D object:</p>
+                
+                <div class="simulator-box">
+                    <div class="sim-controls">
+                        <button class="sim-btn active" onclick="setLight('ambient', this)">Ambient</button>
+                        <button class="sim-btn" onclick="setLight('point', this)">Point</button>
+                        <button class="sim-btn" onclick="setLight('sun', this)">Sun (Directional)</button>
+                    </div>
+                    <div id="light-sphere" class="preview-sphere" style="background: #333;"></div>
+                    <p id="light-desc" style="margin-top: 1rem; color: #888; font-size: 0.9rem;">Uniform light. No shadows. Looks flat.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tutorial-section">
+            <div class="section-header">
+                <h2>3. Step-by-Step Export Guide</h2>
+                <p>Click the steps below to reveal instructions.</p>
+            </div>
+
+            <div class="step-container">
+                <div class="step-item" onclick="toggleDetails('step-1-content', this.querySelector('.expand-btn'))">
+                    <div class="step-header">
+                        <div class="step-header-left">
+                            <span class="step-number">1</span>
+                            <span class="step-title">Set the Camera</span>
+                        </div>
+                        <button class="expand-btn">Expand</button>
+                    </div>
+                    <div class="details-content" id="step-1-content">
+                        <p>Position the camera to frame your scene properly.</p>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+    </main>
+	
+	<footer class="footer-container">
+    <div class="footer-content">
+        <div class="footer-column brand-info">
+            <h2>3D Concepts</h2>
+            <p>Breaking down barriers to learning<br>3D design and animation.</p>
+            <div class="social-icons">
+				<a href="https://wa.me/0175545539" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/arieysh" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+               <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Learning</h3>
+            <ul>
+                <li><a href="introduction.html">Introduction</a></li>
+                <li><a href="modeling.html">3D Modeling</a></li>
+                <li><a href="texture-lighting.html">Texturing & Lighting</a></li>
+                <li><a href="3D_animation_tutorial.html">Animation</a></li>
+                <li><a href="rendering_tutorial.html">Rendering</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Software</h3>
+            <ul>
+                <li><a href="https://www.blender.org/">Blender</a></li>
+                <li><a href="https://www.foundry.com/ja/products/modo/new-releases">Modo</a></li>
+                <li><a href="https://unity.com/">Unity</a></li>
+                <li><a href="https://www.autodesk.com/asean/products/3ds-max/free-trial">3ds Max</a></li>
+                <li><a href="https://www.sidefx.com/download/">Houdini</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>About</h3>
+            <ul>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="about.html">Team</a></li>
+                <li><a href="about.html">FAQ</a></li>
+                <li><a href="about.html">Support</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 3D Concepts. All rights reserved.</p>
+        <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Animation 3D Builder</a>
+        </div>
+    </div>
+</footer>
+
+    <script src="rendering.js"></script>
+	<script src="script.js"></script>
+
+</body>
+</html>
